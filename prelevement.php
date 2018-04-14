@@ -1,12 +1,15 @@
 <html>
 	<head>
 		<title>prelevement</title>
-		<meta http-equiv="content-type" content="text/html, charset="utf-8" />
+		<meta http-equiv="content-type" content="text/html, charset=utf-8" />
 	</head>
 
 <body>
 
 <?php
+
+echo "<h2>Prélévements</h2><br>";
+
 $a=pg_connect("dbname=bacterio_upnp user=thomas host=pilule password=furax@postgres");
 if ($a==false)
 {
