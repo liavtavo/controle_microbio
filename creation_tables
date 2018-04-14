@@ -1,0 +1,67 @@
+create table disp_prelev (
+id SERIAL PRIMARY KEY,
+dispositif VARCHAR NOT NULL,
+condition VARCHAR(50));
+\dl
+\d
+\dt
+\dt
+\d+
+\d disp_prelev
+\d+ disp_prelev
+alter table disp_prelev alter column dispositif type varchar(50)
+;
+\d disp_prelev
+create table limites_classes (
+id serial primary key,
+classe varchar(10) NOT NULL,
+type varchar(50) NOT NULL,
+limite integer NOT null);
+\dt
+\dt
+\d limites_classes
+create table points_prelev (
+id serial primary key,
+id_disp integer not null references disp_prelev(id),
+id_class integer not null references limites_classes(id)
+);
+\dt
+\d points_prelev
+create table jours_prelev (
+id serial primary key,
+jour varchar(10) not null
+);
+\dt
+\d jours_prelev
+create table planning_prelev (
+id_jour integer not null references jours_prelev(id),
+id_point integer not null refrences points_prelev(id),
+primary key(id_jour, id_point)
+);
+create table planning_prelev (
+id_jour integer not null references jours_prelev(id),
+id_point integer not null references points_prelev(id),
+primary key (id_jour, id_point)
+);
+\dt
+\d planning_prelev
+create table prelevements (
+id serial primary key,
+fait boolean not null,
+date_prelev date not null,
+id_point integer not null references points_prelev(id)
+);
+\dt
+\d prelevements
+create table resultats (
+id serial primary key,
+date_res date not null,
+tel boolean,
+nb_micro integer not null,
+micro varchar(100),
+id_prelev integer not null references prelevements(id)
+);
+\dt
+\d resultats
+\dv
+\s creation_tables
