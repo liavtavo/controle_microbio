@@ -8,9 +8,9 @@
 
 <?php
 
-echo "<h2>Prélévements</h2><br>";
+echo "<h2>Prélèvements</h2><br>";
 
-$a=pg_connect("dbname=bacterio_upnp user=thomas host=pilule password=furax@postgres");
+$a=pg_connect("dbname=bacterio_upnp user=thomas host=127.0.0.1 password=bacterio");
 if ($a==false)
 {
 	echo "problème de connexion<br>";
@@ -21,11 +21,12 @@ else
 	echo $a;
 }
 
+echo "<p>";
 
 $reponse=pg_exec($a,"select * from prelevements");
 if ($reponse==false)
 {
-	echo "problème";
+	echo "problème de select";
 }
 else
 {
