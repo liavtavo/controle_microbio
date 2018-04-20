@@ -1,13 +1,13 @@
 <html>
 	<head>
 		<title>prelevement</title>
-		<meta http-equiv="content-type" content="text/html, charset="utf-8" />
+		<meta http-equiv="content-type" content="text/html, charset=utf-8" />
 	</head>
 
 <body>
 
 <?php
-$a=pg_connect("dbname=bacterio_upnp user=thomas host=pilule password=furax@postgres");
+$a=pg_connect("dbname=bacterio_upnp user=thomas host=192.168.1.12 password=bacterio");
 if ($a==false)
 {
 	echo "problème de connexion<br>";
@@ -15,7 +15,7 @@ if ($a==false)
 }
 else
 {
-	echo $a;
+	echo "Connexion OK<br>";
 }
 
 
@@ -26,8 +26,9 @@ if ($reponse==false)
 }
 else
 {
-	echo $reponse;
+	echo "select OK";
 }
 ?>
+
 </body>
 </html>
