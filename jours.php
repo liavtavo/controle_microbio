@@ -10,7 +10,7 @@
 
 <!-- connection à la bdd -->
 <?php
-$a=pg_connect("dbname=bacterio_upnp user=thomas host=192.168.1.12 password=bacterio");
+$a=pg_connect("dbname=bacterio_upnp user=thomas host=127.0.0.1 password=bacterio");
 if ($a==false)
 {
 	echo "problème de connexion<br>";
