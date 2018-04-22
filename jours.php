@@ -50,7 +50,7 @@ for ($i=0; $i<$colonnes;$i++)
 
 echo "<p>";
 
-echo "<h3>Tableau des données</h3>";
+echo "<h3>Table jours_prelev</h3>";
 
 echo "<table border='1'>";
 echo "<tr>";
