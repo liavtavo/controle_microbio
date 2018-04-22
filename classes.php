@@ -1,12 +1,12 @@
 <html>
 	<head>
-		<title>jours de prélèvements</title>
+		<title>Limites des classes</title>
 		<meta http-equiv="content-type" content="text/html, charset=utf-8" />
 	</head>
 
 <body>
 
-<h2>Jours de prélèvements</h2>
+<h2>Limites des classes</h2>
 
 <!-- connection à la bdd -->
 <?php
@@ -21,7 +21,7 @@ else
 	echo "Connexion à la BDD OK !<br>";
 }
 
-$question="select * from jours_prelev";
+$question="select * from limites_classes";
 
 $reponse=pg_query($a, $question);
 if ($reponse==false)
@@ -64,7 +64,7 @@ for ($j=0; $j<$lignes; $j++)
 {
 	echo "<tr>";
 	$uneligne=pg_fetch_array($reponse,$j);
-	echo "<td>".$uneligne['id']."</td><td>".$uneligne['jour']."</td>";
+	echo "<td>".$uneligne['id']."</td><td>".$uneligne['classe']."</td><td>".$uneligne['type']."</td><td>".$uneligne['limite']."</td>";
 	echo "</tr>";
 }
 
