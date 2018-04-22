@@ -34,8 +34,7 @@ SET default_with_oids = false;
 
 CREATE TABLE public.disp_prelev (
     id integer NOT NULL,
-    dispositif character varying(50) NOT NULL,
-    condition character varying(50)
+    dispositif character varying(50) NOT NULL
 );
 
 
@@ -148,6 +147,8 @@ ALTER TABLE public.planning_prelev OWNER TO thomas;
 
 CREATE TABLE public.points_prelev (
     id integer NOT NULL,
+    point character varying(10) NOT NULL,
+    description character varying(50),
     id_disp integer NOT NULL,
     id_class integer NOT NULL
 );
@@ -294,7 +295,11 @@ ALTER TABLE ONLY public.resultats ALTER COLUMN id SET DEFAULT nextval('public.re
 -- Data for Name: disp_prelev; Type: TABLE DATA; Schema: public; Owner: thomas
 --
 
-COPY public.disp_prelev (id, dispositif, condition) FROM stdin;
+COPY public.disp_prelev (id, dispositif) FROM stdin;
+1	Ecouvillon
+2	Boîte de Petri
+3	Biocollecteur SamplR
+4	Countact
 \.
 
 
@@ -302,7 +307,7 @@ COPY public.disp_prelev (id, dispositif, condition) FROM stdin;
 -- Name: disp_prelev_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thomas
 --
 
-SELECT pg_catalog.setval('public.disp_prelev_id_seq', 1, false);
+SELECT pg_catalog.setval('public.disp_prelev_id_seq', 4, true);
 
 
 --
@@ -330,6 +335,11 @@ SELECT pg_catalog.setval('public.jours_prelev_id_seq', 5, true);
 --
 
 COPY public.limites_classes (id, classe, type, limite) FROM stdin;
+1	A	Air	1
+2	A	Surface	1
+3	A	Gants	1
+4	D	Air	100
+5	D	Surface	50
 \.
 
 
@@ -337,7 +347,7 @@ COPY public.limites_classes (id, classe, type, limite) FROM stdin;
 -- Name: limites_classes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thomas
 --
 
-SELECT pg_catalog.setval('public.limites_classes_id_seq', 1, false);
+SELECT pg_catalog.setval('public.limites_classes_id_seq', 5, true);
 
 
 --
@@ -352,7 +362,50 @@ COPY public.planning_prelev (id_jour, id_point) FROM stdin;
 -- Data for Name: points_prelev; Type: TABLE DATA; Schema: public; Owner: thomas
 --
 
-COPY public.points_prelev (id, id_disp, id_class) FROM stdin;
+COPY public.points_prelev (id, point, description, id_disp, id_class) FROM stdin;
+1	gant A	gant	2	3
+2	gant B	gant	2	3
+3	gant C	gant	2	3
+4	gant D	gant	2	3
+5	gant E	gant	2	3
+6	gant F	gant	2	3
+7	gant G	gant	2	3
+8	gant H	gant	2	3
+9	gant I	gant	2	3
+10	point a	coin droit	2	1
+11	point b	milieu	2	1
+12	point c	coin gauche	2	1
+13	point 1	manchette	1	2
+14	point 2	manchette	1	2
+15	point 3	manchette	1	2
+16	point 4	manchette	1	2
+17	point 5	manchette	1	2
+18	point 6	manchette	1	2
+19	point 7	manchette	1	2
+20	point 8	coin plan de travail	1	2
+21	point 11	coin plan de travail	1	2
+22	point 9	DPTE sortie de secours	1	2
+23	point 10	DPTE poubelle	1	2
+24	point 12	rail mobile	1	2
+25	point 13	bouton porte	1	2
+26	point 14	poignée interporte	1	2
+27	point 15	sas transfert	1	2
+28	point 16	sas transfert	1	2
+29	point 17	champ surface de travail	1	2
+30	point 18	champ surface de travail	1	2
+38	point 26	témoin négatif	1	2
+31	point 19	automate zone tubulure centrale	1	2
+32	point 20	automate façade	1	2
+33	point 21	automate bouton allumage	1	2
+34	point 22	bouton douchette	1	2
+35	point 23	balance plateau	1	2
+36	point 24	balance écran	1	2
+37	point 25	automate écran	1	2
+39	point d	air par boîte de Petri	2	4
+40	point e	air par impaction	2	4
+41	point 27	paillasse	2	5
+42	point 28	paillasse	2	5
+43	point 29	paillasse	2	5
 \.
 
 
@@ -360,7 +413,7 @@ COPY public.points_prelev (id, id_disp, id_class) FROM stdin;
 -- Name: points_prelev_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thomas
 --
 
-SELECT pg_catalog.setval('public.points_prelev_id_seq', 1, false);
+SELECT pg_catalog.setval('public.points_prelev_id_seq', 43, true);
 
 
 --
@@ -458,14 +511,6 @@ ALTER TABLE ONLY public.planning_prelev
 
 
 --
--- Name: planning_prelev_id_point_fkey; Type: FK CONSTRAINT; Schema: public; Owner: thomas
---
-
-ALTER TABLE ONLY public.planning_prelev
-    ADD CONSTRAINT planning_prelev_id_point_fkey FOREIGN KEY (id_point) REFERENCES public.points_prelev(id);
-
-
---
 -- Name: points_prelev_id_class_fkey; Type: FK CONSTRAINT; Schema: public; Owner: thomas
 --
 
@@ -479,14 +524,6 @@ ALTER TABLE ONLY public.points_prelev
 
 ALTER TABLE ONLY public.points_prelev
     ADD CONSTRAINT points_prelev_id_disp_fkey FOREIGN KEY (id_disp) REFERENCES public.disp_prelev(id);
-
-
---
--- Name: prelevements_id_point_fkey; Type: FK CONSTRAINT; Schema: public; Owner: thomas
---
-
-ALTER TABLE ONLY public.prelevements
-    ADD CONSTRAINT prelevements_id_point_fkey FOREIGN KEY (id_point) REFERENCES public.points_prelev(id);
 
 
 --
