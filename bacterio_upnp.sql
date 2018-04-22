@@ -355,6 +355,77 @@ SELECT pg_catalog.setval('public.limites_classes_id_seq', 5, true);
 --
 
 COPY public.planning_prelev (id_jour, id_point) FROM stdin;
+1	1
+1	2
+1	10
+1	11
+1	12
+1	13
+1	14
+1	20
+1	21
+1	34
+1	35
+1	29
+1	30
+1	38
+2	3
+2	4
+2	10
+2	11
+2	12
+2	17
+2	18
+2	19
+2	23
+2	31
+2	32
+2	36
+2	29
+2	30
+2	38
+3	5
+3	6
+3	7
+3	8
+3	9
+3	10
+3	11
+3	12
+3	27
+3	28
+3	38
+3	41
+3	42
+3	43
+3	39
+3	40
+4	1
+4	2
+4	10
+4	11
+4	12
+4	15
+4	16
+4	25
+4	26
+4	34
+4	37
+4	29
+4	30
+4	38
+5	3
+5	4
+5	10
+5	11
+5	12
+5	22
+5	24
+5	33
+5	35
+5	29
+5	30
+5	38
 \.
 
 
@@ -402,10 +473,10 @@ COPY public.points_prelev (id, point, description, id_disp, id_class) FROM stdin
 36	point 24	balance écran	1	2
 37	point 25	automate écran	1	2
 39	point d	air par boîte de Petri	2	4
-40	point e	air par impaction	2	4
-41	point 27	paillasse	2	5
-42	point 28	paillasse	2	5
-43	point 29	paillasse	2	5
+40	point e	air par impaction	3	4
+41	point 27	paillasse	4	5
+42	point 28	paillasse	4	5
+43	point 29	paillasse	4	5
 \.
 
 
