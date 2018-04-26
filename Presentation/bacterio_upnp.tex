@@ -3,6 +3,7 @@
 \usepackage[french]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
+\usepackage{amsmath}
 \author{Thomas~Liautaud\\Pharmacien des hôpitaux\\Grand Hôpital de l'Est Francilien}
 \date{26 avril 2018}
 \title{Surveillance microbiologique d'une unité de préparation de nutrition parentérale : gestion des enregistrements avec un serveur web et un système de gestion de base de données}
@@ -65,11 +66,14 @@ La base de données est nommée \emph{bacterio\_upnp}. Le dump de la base de don
 
 
 \subsubsection{Description des tables}
-
-La table disp\_prelev (Table \ref{disp}) référence les dispositifs de prélèvement. Elle a été créée avec la requête :
-
-\texttt{CREATE TABLE disp\_prelev(id SERIAL PRIMARY KEY, disp VARCHAR(50) NOT NULL);}
-
+\begin{description}
+\item[Table disp\_prelev] (Table \ref{disp}) référence les dispositifs de prélèvement. Elle a été créée avec la requête :
+\begin{tabbing}
+CREATE TABLE disp\_prelev(\=\\
+\>id SERIAL PRIMARY KEY,\\
+\>disp VARCHAR(50) NOT NULL\\
+\>);
+\end{tabbing}
 \begin{table}[h]
 \caption{Table disp\_prelev \label{disp}}
 \begin{center}
@@ -83,6 +87,34 @@ La table disp\_prelev (Table \ref{disp}) référence les dispositifs de prélèv
 \end{tabular}
 \end{center}
 \end{table}
+
+\item[Table limites\_classes] (Table \ref{classes}) liste les classes microbiologiques, les types de prélèvements et les limites microbiologiques. Elle a été créée avec la requête :
+\begin{tabbing}
+CREATE TABLE limites\_classes(\=\\
+\>id SERIAL PRIMARY KEY,\\
+\>classe VARCHAR(10) NOT NULL\\
+\>type VARCHAR(50) NOT NULL\\
+\>limite INTEGER NOT NULL\\
+\>);
+\end{tabbing}
+\begin{table}[h]
+\caption{Table disp\_prelev \label{classes}}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+	\hline
+	\textbf{Nom de variable} & \textbf{Type} & \textbf{Clé primaire} & \textbf{Clé étrangère}\\
+	\hline
+	id & SERIAL & oui &\\
+	classe & VARCHAR(10)& &\\
+	type & VARCHAR(50)& &\\
+	limite & INTEGER & &\\
+	\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\end{description}
+
 
 \subsubsection{Relations entre les tables}
 \subsection{Serveur Web}
