@@ -1,3 +1,7 @@
 $ cat .gitignore
 *~
 *.orig
+*.aux
+*.log
+*.gz
+*.toc
