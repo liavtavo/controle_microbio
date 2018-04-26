@@ -1,12 +1,12 @@
 <html>
 	<head>
-		<title>Prélèvements</title>
+		<title>Résultats</title>
 		<meta http-equiv="content-type" content="text/html, charset=utf-8" />
 	</head>
 
 <body>
 
-<h2>Prélèvements réalisés</h2>
+<h2>Résultats</h2>
 
 <!-- connection à la bdd -->
 <?php
@@ -21,7 +21,7 @@ else
 	echo "Connexion à la BDD OK !<br>";
 }
 
-$question="select * from prelevements";
+$question="select * from resultats";
 
 $reponse=pg_query($a, $question);
 if ($reponse==false)
@@ -50,7 +50,7 @@ for ($i=0; $i<$colonnes;$i++)
 
 echo "<p>";
 
-echo "<h3>Table prelevements</h3>";
+echo "<h3>Table resultats</h3>";
 
 echo "<table border='1'>";
 echo "<tr>";
@@ -64,15 +64,14 @@ for ($j=0; $j<$lignes; $j++)
 {
 	echo "<tr>";
 	$uneligne=pg_fetch_array($reponse,$j);
-	echo "<td>".$uneligne['id']."</td><td>".$uneligne['date_prelev']."</td><td>".$uneligne['id_point']."</td>";
+	echo "<td>".$uneligne['id']."</td><td>".$uneligne['id_prelev']."</td><td>".$uneligne['date_res']."</td><td>".$uneligne['tel']."</td><td>".$uneligne['sign']."</td><td>".$uneligne['ufc']."</td><td>".$uneligne['germe']."</td>";
 	echo "</tr>";
 }
 
 echo "</table>";
 
-echo "<h3>Table prelevements avec liens vers points_prelev</h3>";
-
-$question="SELECT points_prelev.id, point, description, classe, type, dispositif, limite FROM disp_prelev, limites_classes, points_prelev WHERE points_prelev.id_disp=disp_prelev.id AND points_prelev.id_class=limites_classes.id;";
+echo "<h3>Table resultats avec liens vers prelevements, points_prelev, limites_classes</h3>";
+$question="SELECT resultats.id, prelevements.date_prelev, point, description, classe, date_res, tel, sign, ufc, germe  FROM resultats, prelevements, points_prelev, limites_classes WHERE resultats.id_prelev=prelevements.id AND prelevements.id_point=points_prelev.id AND points_prelev.id_class=limites_classes.id;";
 
 $reponse=pg_query($a, $question);
 if ($reponse==false)
@@ -97,11 +96,12 @@ for ($j=0; $j<$lignes; $j++)
 {
 	echo "<tr>";
 	$uneligne=pg_fetch_array($reponse,$j);
-	echo "<td>".$uneligne['id']."</td><td>".$uneligne['point']."</td><td>".$uneligne['description']."</td><td>".$uneligne['classe']."</td><td>".$uneligne['type']."</td><td>".$uneligne['dispositif']."</td><td>".$uneligne['limite']."</td>";
+	echo "<td>".$uneligne['id']."</td><td>".$uneligne['date_prelev']."</td><td>".$uneligne['point']."</td><td>".$uneligne['description']."</td><td>".$uneligne['classe']."</td><td>".$uneligne['date_res']."</td><td>".$uneligne['tel']."</td><td>".$uneligne['sign']."</td><td>".$uneligne['ufc']."</td><td>".$uneligne['germe']."</td>";
 	echo "</tr>";
 }
 
 echo "</table>";
+
 
 ?>
 
