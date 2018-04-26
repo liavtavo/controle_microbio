@@ -3,7 +3,7 @@
 \usepackage[french]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
-\author{Thomas~Liautaud\\Pharmacien des hôpitaux\\Grand Hôpital de l'Est Francilien\\}
+\author{Thomas~Liautaud\\Pharmacien des hôpitaux\\Grand Hôpital de l'Est Francilien}
 \date{26 avril 2018}
 \title{Surveillance microbiologique d'une unité de préparation de nutrition parentérale : gestion des enregistrements avec un serveur web et un système de gestion de base de données}
 
@@ -68,7 +68,7 @@ La base de données est nommée \emph{bacterio\_upnp}. Le dump de la base de don
 
 La table disp\_prelev (Table \ref{disp}) référence les dispositifs de prélèvement. Elle a été créée avec la requête :
 
-\texttt{CREATEDB disp\_prelev(id SERIAL PRIMARY KEY, disp VARCHAR(50));}
+\texttt{CREATE TABLE disp\_prelev(id SERIAL PRIMARY KEY, disp VARCHAR(50) NOT NULL);}
 
 \begin{table}[h]
 \caption{Table disp\_prelev \label{disp}}
