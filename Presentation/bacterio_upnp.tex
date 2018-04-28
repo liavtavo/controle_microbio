@@ -19,9 +19,9 @@ Les mélanges de nutrition parentérale sont utilisés pour les patients dont le
 
 Pour la préparation des médicaments stériles les Bonnes Pratiques de préparation \footnote{Bonnes Pratiques de Préparations, ANSM, 2007} (BPP) imposent des  exigences  particulières en vue de réduire les risques de contamination microbienne, particulaire et pyrogène. Elles définissent notamment les zones à atmosphère contrôlée (ZAC) qui sont des locaux et équipements dont les qualités microbiologique et particulaire sont contrôlées.
 
-Aux fins de préparation de médicaments stériles, 4 classes de ZAC sont distinguées. Des recommandations pour la surveillance microbiologique des ZAC sont présentées dans la table \ref{classes}. Les méthodes d'échantillonnages utilisent des boîtes de Petri, des échantillons volumétriques d'air et des contrôles de surface (prélevés au moyen de géloses de contact et/ou écouvillons).
+Aux fins de préparation de médicaments stériles, 4 classes de ZAC sont distinguées. Des recommandations pour la surveillance microbiologique des ZAC sont présentées dans la table \ref{zac}. Les méthodes d'échantillonnages utilisent des boîtes de Petri, des échantillons volumétriques d'air et des contrôles de surface (prélevés au moyen de géloses de contact et/ou écouvillons).
 \begin{table}[h]
-\caption{Recommandations pour la surveillance microbiologique des zones d'atmosphère controlée en activité. Limites de contamination en unité formant colonie (ufc) .\label{classes}}
+\caption{Recommandations pour la surveillance microbiologique des zones d'atmosphère controlée en activité. Limites de contamination en unité formant colonie (ufc).\label{zac}}
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|}
 	\hline
@@ -50,31 +50,26 @@ Les prélèvements microbiologiques sont traités par le laboratoire d'hygiène 
 
 Actuellement les prélèvements effectués et leurs résultats sont enregistrés sur un tableur.
 \section{Objectif}
-L'objectif de ce projet est d'enregistrer sur une base de données relationnelle les prélèvements biologiques et leurs résultats. Les données seront mises à disposition des utilisateurs sur un serveur Web. Ce serveur web doit permettre aux utilisateurs de saisir et consulter les prélèvements et les résultats.
+L'objectif de ce projet est de mettre à disposition des utilisateurs un serveur web qui doit permettre de saisir et consulter les prélèvements et les résultats.
 \section{Materiel et méthode}
 
-\subsection{Base de données}
+\subsection{Base de données relationnelle}
+ \subsubsection{Base de données postgreSQL}
+
 La base de données postgreSQL (version 9.3) est installée sur le système d'exploitation GNU/Linux (Linux Mint 17.3).
-
-\subsection{Serveur Web}
-Le serveur web Apache (version 2.4.7) et installé sur le système d'exploitation GNU/Linux (Linux Mint 17.3).
-Les pages Web sont écrites en langage HTML et PHP (version 7.2.4-1)
-
-\section{Résultats}
-\subsection{Base de données postgreSQL}
-La base de données est nommée \emph{bacterio\_upnp}. Le dump de la base de données est fourni sous le nom de fichier : \textbf{bacterio\_upnp.sql}.
+La base de données est nommée \emph{bacterio\_upnp}.
 
 
-\subsubsection{Description des tables}
+\subsubsection{Création des tables}
 \begin{description}
 \item[Table disp\_prelev] (Table \ref{disp}) référence les dispositifs de prélèvement. Elle a été créée avec la requête :
 \begin{tabbing}
-CREATE TABLE disp\_prelev(\=\\
-\>id SERIAL PRIMARY KEY,\\
-\>disp VARCHAR(50) NOT NULL\\
-\>);
+CREATE TABLE disp\_prelev(\\
+id SERIAL PRIMARY KEY,\\
+disp VARCHAR(50) NOT NULL\\
+);
 \end{tabbing}
-\begin{table}[h]
+\begin{table}
 \caption{Table disp\_prelev \label{disp}}
 \begin{center}
 \begin{tabular}{|c|c|c|c|}
@@ -90,15 +85,15 @@ CREATE TABLE disp\_prelev(\=\\
 
 \item[Table limites\_classes] (Table \ref{classes}) liste les classes microbiologiques, les types de prélèvements et les limites microbiologiques. Elle a été créée avec la requête :
 \begin{tabbing}
-CREATE TABLE limites\_classes(\=\\
-\>id SERIAL PRIMARY KEY,\\
-\>classe VARCHAR(10) NOT NULL\\
-\>type VARCHAR(50) NOT NULL\\
-\>limite INTEGER NOT NULL\\
-\>);
+CREATE TABLE limites\_classes(\
+id SERIAL PRIMARY KEY,\\
+classe VARCHAR(10) NOT NULL\\
+type VARCHAR(50) NOT NULL\\
+limite INTEGER NOT NULL\\
+);
 \end{tabbing}
-\begin{table}[h]
-\caption{Table disp\_prelev \label{classes}}
+\begin{table}
+\caption{Table limites\_classes \label{classes}}
 \begin{center}
 \begin{tabular}{|c|c|c|c|}
 	\hline
@@ -113,17 +108,143 @@ CREATE TABLE limites\_classes(\=\\
 \end{center}
 \end{table}
 
+\item[Table points\_prelev] (Table \ref{points}) liste les points de prélèvements utilisés. Elle a été créée avec la requête :
+\begin{tabbing}
+CREATE TABLE points\_prelev(\\
+id SERIAL PRIMARY KEY,\\
+point VARCHAR(10) NOT NULL,\\
+id\_disp INTEGER NOT NULL REFERENCES disp\_prelev(id)\\
+id\_class INTEGER NOT NULL REFERENCES limites\_classes(id),\\
+);
+\end{tabbing}
+\begin{table}
+\caption{Table points\_prelev \label{points}}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+	\hline
+	\textbf{Nom de variable} & \textbf{Type} & \textbf{Clé primaire} & \textbf{Clé étrangère}\\
+	\hline
+	id & SERIAL & oui &\\
+	point & VARCHAR(10)& &\\
+	id\_disp & INTEGER & & disp\_prelev(id)\\
+	id\_class & INTEGER & & limites\_classes(id)\\
+	\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\item[Table jours\_prelev] (Table \ref{jours}) liste les jours de prélèvements. Elle a été créée avec la requête :
+\begin{tabbing}
+CREATE TABLE jours\_prelev(\\
+id SERIAL PRIMARY KEY,\\
+jour VARCHAR(10) NOT NULL,\\
+);
+\end{tabbing}
+\begin{table}
+\caption{Table jours\_prelev \label{jours}}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+	\hline
+	\textbf{Nom de variable} & \textbf{Type} & \textbf{Clé primaire} & \textbf{Clé étrangère}\\
+	\hline
+	id & SERIAL & oui &\\
+	jours & VARCHAR(10)& &\\
+	\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+\item[Table planning\_prelev] (Table \ref{planning}) associe des jours de prélèvements et des points de prélèvements. Elle a été créée avec la requête :
+\begin{tabbing}
+CREATE TABLE planning\_prelev(\\
+id\_jour INTEGER NOT NULL REFERENCES jours\_prelev(id),\\
+id\_point INTEGER NOT NULL REFERENCES points\_prelev(id),\\
+PRIMARY KEY (id\_jour, id\_point)
+);
+\end{tabbing}
+\begin{table}
+\caption{Table planning\_prelev \label{planning}}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+	\hline
+	\textbf{Nom de variable} & \textbf{Type} & \textbf{Clé primaire} & \textbf{Clé étrangère}\\
+	\hline
+	id\_jour & INTEGER & oui & jours\_prelev(id)\\
+	id\_point & INTEGER & oui & points\_prelev(id)\\
+	\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\item[Table prelevements] (Table \ref{prelevements}) liste les prélèvements réalisés. Elle a été créée avec la requête :
+\begin{tabbing}
+CREATE TABLE prelevements\\
+id SERIAL PRIMARY KEY,\\
+date\_prelev DATE NOT NULL,\\
+id\_point INTEGER NOT NULL REFERENCES points\_prelev(id)
+);
+\end{tabbing}
+\begin{table}
+\caption{Table prelevements \label{prelevements}}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+	\hline
+	\textbf{Nom de variable} & \textbf{Type} & \textbf{Clé primaire} & \textbf{Clé étrangère}\\
+	\hline
+	id & SERIAL & oui & \\
+	date\_prelev & DATE & &\\
+	id\_point & INTEGER & & points\_prelev(id)\\
+	\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\item[Table resultats] (Table \ref{resultats}) pour enregistrer les résultats des prélèvements. Elle a été créée avec la requête :
+\begin{tabbing}
+CREATE TABLE resultats\\
+id\_prelev INTEGER REFERENCES prelevements(id),\\
+\nopagebreak
+tel BOOLEAN,\\
+sign BOOLEAN,\\
+ufc INTEGER NOT NULL,\\
+germe VARCHAR(100),
+);
+\end{tabbing}
+\begin{table}
+\caption{Table resultats \label{resultats}}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+	\hline
+	\textbf{Nom de variable} & \textbf{Type} & \textbf{Clé primaire} & \textbf{Clé étrangère}\\
+	\hline
+	id & SERIAL & oui & \\
+	date\_prelev & DATE & &\\
+	id\_point & INTEGER & & points\_prelev(id)\\
+	\hline
+\end{tabular}
+\end{center}
+\end{table}
+
 \end{description}
 
-
 \subsubsection{Relations entre les tables}
+
+insérer le schéma.
+
+\subsubsection{Peuplement des tables}
+Les enregistrements des tables ont été renseignés par des commandes SQL \emph{INSERT}, sauf pour les tables \emph{prelevements} et \emph{resultats}. Ces deux tables ont été renseignées par l'importation de fichiers .csv contenant les données déjà enregistrées sur tableur.
 \subsection{Serveur Web}
+Le serveur web Apache (version 2.4.7) et installé sur le système d'exploitation GNU/Linux (Linux Mint 17.3).
+Les pages Web sont écrites en langage HTML et PHP (version 7.2.4-1)
+\section{Résultats}
+Le dump de la base de données est fourni sous le nom de fichier : \textbf{bacterio\_upnp.sql}. Toutes les requêtes sont faites avec l'utilisateur \emph{pharmacien} et le mot de passe \emph{zac}
+
 Les fichiers .php et .html du site web sont les suivants :
 \begin{description}
 \item[accueil.html :] Présentation de la base de données et accès aux différentes pages par des liens hypertexte.
 
 \end{description}
-
 
 \section{Discussion}
 Discussion

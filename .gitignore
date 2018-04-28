@@ -3,6 +3,6 @@ $ cat .gitignore
 *.orig
 *.aux
 *.log
-*.gz
+*.gz*
 *.toc
 *.odp#
