@@ -199,8 +199,9 @@ id\_point INTEGER NOT NULL REFERENCES points\_prelev(id)
 \end{tabular}
 \end{center}
 \end{table}
-
+\newpage
 \item[Table resultats] (Table \ref{resultats}) pour enregistrer les résultats des prélèvements. Elle a été créée avec la requête :
+
 \begin{tabbing}
 CREATE TABLE resultats\\
 id\_prelev INTEGER REFERENCES prelevements(id),\\
@@ -228,17 +229,19 @@ germe VARCHAR(100),
 
 \end{description}
 
-\subsubsection{Relations entre les tables}
-
-insérer le schéma.
-
 \subsubsection{Peuplement des tables}
 Les enregistrements des tables ont été renseignés par des commandes SQL \emph{INSERT}, sauf pour les tables \emph{prelevements} et \emph{resultats}. Ces deux tables ont été renseignées par l'importation de fichiers .csv contenant les données déjà enregistrées sur tableur.
 \subsection{Serveur Web}
 Le serveur web Apache (version 2.4.7) et installé sur le système d'exploitation GNU/Linux (Linux Mint 17.3).
 Les pages Web sont écrites en langage HTML et PHP (version 7.2.4-1)
 \section{Résultats}
-Le dump de la base de données est fourni sous le nom de fichier : \textbf{bacterio\_upnp.sql}. Toutes les requêtes sont faites avec l'utilisateur \emph{pharmacien} et le mot de passe \emph{zac}
+Le dump de la base de données est fourni sous le nom de fichier : \textbf{bacterio\_upnp.sql}. Toutes les requêtes sont faites avec l'utilisateur \emph{pharmacien} et le mot de passe \emph{zac}.
+
+Le schéma relationnel de la base \emph{bacterio\_upnp} (figure \ref{erd}) a été obtenu par DBVizualizer.
+\begin{figure}
+\caption{\label{erd}Schéma relationnel de bacterio\_upnp}
+\includegraphics[scale=0.4]{erd.png}
+\end{figure}
 
 Les fichiers .php et .html du site web sont les suivants :
 \begin{description}
