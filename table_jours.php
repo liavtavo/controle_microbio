@@ -1,12 +1,12 @@
 <html>
 	<head>
-		<title>Points de prélèvement</title>
+		<title>jours de prélèvements</title>
 		<meta http-equiv="content-type" content="text/html, charset=utf-8" />
 	</head>
 
 <body>
 
-<h2>Points de prélèvement</h2>
+<h2>Jours de prélèvements</h2>
 
 <!-- connection à la bdd -->
 <?php
@@ -21,7 +21,7 @@ else
 	echo "Connexion à la BDD OK !<br>";
 }
 
-$question="select * from points_prelev";
+$question="select * from jours_prelev";
 
 $reponse=pg_query($a, $question);
 if ($reponse==false)
@@ -50,7 +50,7 @@ for ($i=0; $i<$colonnes;$i++)
 
 echo "<p>";
 
-echo "<h3>Tableau des données</h3>";
+echo "<h3>Table jours_prelev</h3>";
 
 echo "<table border='1'>";
 echo "<tr>";
@@ -64,7 +64,7 @@ for ($j=0; $j<$lignes; $j++)
 {
 	echo "<tr>";
 	$uneligne=pg_fetch_array($reponse,$j);
-	echo "<td>".$uneligne['id']."</td><td>".$uneligne['point']."</td><td>".$uneligne['description']."</td><td>".$uneligne['id_disp']."</td><td>".$uneligne['id_class']."</td>";
+	echo "<td>".$uneligne['id']."</td><td>".$uneligne['jour']."</td>";
 	echo "</tr>";
 }
 

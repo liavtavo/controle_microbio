@@ -1,12 +1,12 @@
 <html>
 	<head>
-		<title>Dispositifs de prélèvements</title>
+		<title>Limites des classes</title>
 		<meta http-equiv="content-type" content="text/html, charset=utf-8" />
 	</head>
 
 <body>
 
-<h2>Dispositifs de prélèvements</h2>
+<h2>Limites des classes</h2>
 
 <!-- connection à la bdd -->
 <?php
@@ -21,7 +21,7 @@ else
 	echo "Connexion à la BDD OK !<br>";
 }
 
-$question="select * from disp_prelev";
+$question="select * from limites_classes";
 
 $reponse=pg_query($a, $question);
 if ($reponse==false)
@@ -50,7 +50,7 @@ for ($i=0; $i<$colonnes;$i++)
 
 echo "<p>";
 
-echo "<h3>Tableau des données</h3>";
+echo "<h3>Table limites_classes</h3>";
 
 echo "<table border='1'>";
 echo "<tr>";
@@ -64,7 +64,7 @@ for ($j=0; $j<$lignes; $j++)
 {
 	echo "<tr>";
 	$uneligne=pg_fetch_array($reponse,$j);
-	echo "<td>".$uneligne['id']."</td><td>".$uneligne['dispositif']."</td>";
+	echo "<td>".$uneligne['id']."</td><td>".$uneligne['classe']."</td><td>".$uneligne['type']."</td><td>".$uneligne['limite']."</td>";
 	echo "</tr>";
 }
 
