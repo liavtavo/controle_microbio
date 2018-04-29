@@ -2044,6 +2044,14 @@ ALTER TABLE ONLY public.resultats
 
 
 --
+-- Name: id_point; Type: FK CONSTRAINT; Schema: public; Owner: thomas
+--
+
+ALTER TABLE ONLY public.planning_prelev
+    ADD CONSTRAINT id_point FOREIGN KEY (id_point) REFERENCES public.points_prelev(id);
+
+
+--
 -- Name: planning_prelev_id_jour_fkey; Type: FK CONSTRAINT; Schema: public; Owner: thomas
 --
 
@@ -2091,6 +2099,76 @@ REVOKE ALL ON SCHEMA public FROM PUBLIC;
 REVOKE ALL ON SCHEMA public FROM postgres;
 GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- Name: TABLE disp_prelev; Type: ACL; Schema: public; Owner: thomas
+--
+
+REVOKE ALL ON TABLE public.disp_prelev FROM PUBLIC;
+REVOKE ALL ON TABLE public.disp_prelev FROM thomas;
+GRANT ALL ON TABLE public.disp_prelev TO thomas;
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE public.disp_prelev TO pharmacien;
+
+
+--
+-- Name: TABLE jours_prelev; Type: ACL; Schema: public; Owner: thomas
+--
+
+REVOKE ALL ON TABLE public.jours_prelev FROM PUBLIC;
+REVOKE ALL ON TABLE public.jours_prelev FROM thomas;
+GRANT ALL ON TABLE public.jours_prelev TO thomas;
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE public.jours_prelev TO pharmacien;
+
+
+--
+-- Name: TABLE limites_classes; Type: ACL; Schema: public; Owner: thomas
+--
+
+REVOKE ALL ON TABLE public.limites_classes FROM PUBLIC;
+REVOKE ALL ON TABLE public.limites_classes FROM thomas;
+GRANT ALL ON TABLE public.limites_classes TO thomas;
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE public.limites_classes TO pharmacien;
+
+
+--
+-- Name: TABLE planning_prelev; Type: ACL; Schema: public; Owner: thomas
+--
+
+REVOKE ALL ON TABLE public.planning_prelev FROM PUBLIC;
+REVOKE ALL ON TABLE public.planning_prelev FROM thomas;
+GRANT ALL ON TABLE public.planning_prelev TO thomas;
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE public.planning_prelev TO pharmacien;
+
+
+--
+-- Name: TABLE points_prelev; Type: ACL; Schema: public; Owner: thomas
+--
+
+REVOKE ALL ON TABLE public.points_prelev FROM PUBLIC;
+REVOKE ALL ON TABLE public.points_prelev FROM thomas;
+GRANT ALL ON TABLE public.points_prelev TO thomas;
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE public.points_prelev TO pharmacien;
+
+
+--
+-- Name: TABLE prelevements; Type: ACL; Schema: public; Owner: thomas
+--
+
+REVOKE ALL ON TABLE public.prelevements FROM PUBLIC;
+REVOKE ALL ON TABLE public.prelevements FROM thomas;
+GRANT ALL ON TABLE public.prelevements TO thomas;
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE public.prelevements TO pharmacien;
+
+
+--
+-- Name: TABLE resultats; Type: ACL; Schema: public; Owner: thomas
+--
+
+REVOKE ALL ON TABLE public.resultats FROM PUBLIC;
+REVOKE ALL ON TABLE public.resultats FROM thomas;
+GRANT ALL ON TABLE public.resultats TO thomas;
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE public.resultats TO pharmacien;
 
 
 --
