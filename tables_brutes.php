@@ -7,6 +7,11 @@
 
 <body>
 <a href="accueil.html">Retour à l'accueil</a>
+<h2>Schéma relationnel des tables de la base de données</h2>
+
+<img src="erd.png" width=100% height=auto>
+
+
 <h2>Tables de la base de données bacterio_upnp</h2>
 
 <a href="#jours">Table jours_prelev</a><br>
