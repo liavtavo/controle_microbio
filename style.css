@@ -22,5 +22,7 @@ caption {
 	color: blue;
 }
 
-
+:focus{
+background-color: powderblue;
+}
 

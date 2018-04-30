@@ -8,6 +8,10 @@
 <body>
 
 <h2>Points de prélèvement</h2>
+     <a href=#gants>Gants classe A</a><br>
+     <a href=#airA>Air classe A</a><br>
+     <a href=#surfacesA>Contrôle des surfaces classe A</a><br>
+     <a href=#classeD>Salle classe D</a><br>
 
 <!-- connection à la bdd -->
 <?php
@@ -18,9 +22,7 @@ if ($a==false)
 	exit;
 }
 
-echo "<h3>Isolateur classe A</h3>";
-
-echo "<h4>Gants (boîte de Petri)</h4>";
+//Gants classe A
 
 $question="SELECT point AS Points FROM disp_prelev, limites_classes, points_prelev WHERE points_prelev.id_disp=disp_prelev.id AND points_prelev.id_class=limites_classes.id AND classe LIKE 'A' AND type LIKE 'Gants';";
 
@@ -35,7 +37,7 @@ echo "<p>";
 $colonnes=pg_num_fields($reponse);
 $lignes=pg_numrows($reponse);
 
-echo "<table>";
+echo '<table id="gants"><caption>Gants classe A(boîte de Petri)</caption>';
 
 for ($j=0; $j<$lignes; $j++)
 {
@@ -47,7 +49,7 @@ for ($j=0; $j<$lignes; $j++)
 
 echo "</table>";
 
-echo "<h4>Contrôle de l'air (boîte de Petri)</h4>";
+//Air classe A
 
 $question="SELECT point, description FROM disp_prelev, limites_classes, points_prelev WHERE points_prelev.id_disp=disp_prelev.id AND points_prelev.id_class=limites_classes.id AND classe LIKE 'A' AND type LIKE 'Air';";
 
@@ -62,7 +64,7 @@ echo "<p>";
 $colonnes=pg_num_fields($reponse);
 $lignes=pg_numrows($reponse);
 
-echo "<table border='1'>";
+echo '<table id=airA><caption>Contrôle de l\'air classe A (boîte de Petri)</a></caption>';
 echo "<tr>";
 for ($i=0; $i<$colonnes;$i++)
 {
@@ -80,7 +82,7 @@ for ($j=0; $j<$lignes; $j++)
 
 echo "</table>";
 
-echo "<h4>Contrôle des surfaces (écouvillon)</h4>";
+
 
 $question="SELECT point, description FROM disp_prelev, limites_classes, points_prelev WHERE points_prelev.id_disp=disp_prelev.id AND points_prelev.id_class=limites_classes.id AND classe LIKE 'A' AND type LIKE 'Surface';";
 
@@ -95,7 +97,7 @@ echo "<p>";
 $colonnes=pg_num_fields($reponse);
 $lignes=pg_numrows($reponse);
 
-echo "<table border='1'>";
+echo '<table id=surfacesA><caption>Contrôle des surfaces classe A (écouvillon)</caption>';
 echo "<tr>";
 for ($i=0; $i<$colonnes;$i++)
 {
@@ -113,7 +115,7 @@ for ($j=0; $j<$lignes; $j++)
 
 echo "</table>";
 
-echo "<h3>Salle classe D</h3>";
+
 
 $question="SELECT type, dispositif, point, description FROM disp_prelev, limites_classes, points_prelev WHERE points_prelev.id_disp=disp_prelev.id AND points_prelev.id_class=limites_classes.id AND classe LIKE 'D';";
 
@@ -128,7 +130,7 @@ echo "<p>";
 $colonnes=pg_num_fields($reponse);
 $lignes=pg_numrows($reponse);
 
-echo "<table border='1'>";
+echo '<table id=classeD><caption>Salle classe D</caption>';
 echo "<tr>";
 for ($i=0; $i<$colonnes;$i++)
 {
