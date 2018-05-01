@@ -12,12 +12,22 @@ h1, h2, h3
 	color: blue;
 }
 
-table, td, tr, th {
+
+table, tr, th, td
+{	
 	border-collapse:collapse;
 	border:1px solid black;
 }
 
-caption {
+td
+{
+	padding-right:10px;
+	padding-left:10px;
+}
+
+
+caption
+{	
 	font-weight:bold;
 	color: blue;
 }
