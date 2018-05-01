@@ -1,0 +1,38 @@
+/*
+style du site
+*/
+
+*{
+	font-family: Georgia, Verdana, Arial, sans-serif
+}
+
+
+h1, h2, h3
+{
+	color: blue;
+}
+
+
+table, tr, th, td
+{	
+	border-collapse:collapse;
+	border:1px solid black;
+}
+
+td
+{
+	padding-right:10px;
+	padding-left:10px;
+}
+
+
+caption
+{	
+	font-weight:bold;
+	color: blue;
+}
+
+:focus{
+background-color: powderblue;
+}
+

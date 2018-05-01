@@ -2,13 +2,33 @@
     <head>
         <title>Connexion</title>
         <meta http-equiv="content-type" content="text/html, charset=utf-8"/>
+	<link rel="stylesheet" href="style.css" />
     </head>
     <bodyl>
-        <a href="readme.md">Description de la base</a><br>
 
-	<h3>Tables disponibles</h3><p>
-	<a href="jours.php">Table des jours de prélèvement</a><br>
-        <a href="prelevement.php">Prélèvements</a><br>
+<form method="POST" action="identifiants.php">
+
+	<fieldset>
+
+	<legend>Connectez vous à la BDD</legend>
+
+       <label for="user">Nom utilisateur :</label>
+
+       <input type="text" name="user" id="user" placeholder="ex. Toto" size="30" maxlength="10" value="pharmacien" required />
+       
+
+       <br/>
+
+       <label for="pass">Votre mot de passe :</label>
+
+       <input type="password" name="password" id="pass" value="zac" required/><br>
+
+	<input type="submit" name="submit" value="Envoyer" />
+
+       
+	</fieldset>
+
+</form>
 	
     </body>
 </html>
