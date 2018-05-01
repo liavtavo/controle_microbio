@@ -6,7 +6,7 @@
 	</head>
 
 <body>
-
+<a href="accueil.html">Retour à l'accueil</a>
 <h1>Points de prélèvement</h1>
      <a href=#classeA>Points de l'isolateur en classe A</a><br>
 <a href=#auto>Points de l'automate et de la balance en classe A</a><br>
