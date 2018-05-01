@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Planning_select</title>
+        <meta http-equiv="content-type" content="text/html, charset=utf-8"/>
+	<link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+	
+	<form method="POST", action="planning_select.php">
+
+	Jour<br>
+	<select name=jour>
+		<option value=%>tous</option>
+		<option value=lundi>lundi</option>
+		<option value=mardi>mardi</option>
+		<option value=mercredi>mercredi</option>
+		<option value=jeudi>jeudi</option>
+		<option value=vendredi>vendredi</option>
+
+	</select>
+<p>
+Classe<br>
+<input type=radio name=classe value=A>A
+<input type=radio name=classe value=D>D
+<input type=radio name=classe value=%>Toutes
+
+<p>
+Type<br>
+<input type=radio name=type value=Gants>Gants
+<input type=radio name=type value=Air>Air
+<input type=radio name=type value=Surface>Surface
+<input type=radio name=type value=%>Tous
+
+<P>
+<input type=submit value="Afficher le planning sélectionné"><br>
+<input type=reset value="réinitialiser"><br>
+<input type=button onclick="alert('remplissez les champs')" value="Aide">
+
+</form>
+
+	
+	
+	
+    </body>
+</html>
