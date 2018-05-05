@@ -8,7 +8,7 @@
 <body>
 <a href="accueil.html">Retour à l'accueil</a>
 <h2>Prélèvements réalisés et résultats</h2>
-<a href=#prelevements>Table des prélèvements réalisés et des résultats</a><br>
+<br>
 <a href=prelevements_select.html>Filtrer</a>
 
 <!-- connection à la bdd -->
