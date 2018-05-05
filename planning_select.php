@@ -28,6 +28,7 @@ $type=$_POST['type'];
 echo "Jour : ".$jour."<br>";
 echo "classe : ".$classe."<br>";
 echo "type : ".$type."<br>";
+
 echo "<p>";
 echo "<a href=planning_select.html>modifier les filtres</a><p>";
 
