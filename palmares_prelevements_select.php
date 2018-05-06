@@ -9,8 +9,6 @@
 <a href="accueil.html">Retour à l'accueil</a>
 <h2>Palmarès des points de prélèvements</h2>
 <a href=points_details.php>Description des points de prélèvement</a>
-<br>
-<a href=palmares_prelevements_select.html>Filtrer</a>
 
 <!-- connection à la bdd -->
 <?php
@@ -29,11 +27,22 @@ if ($reponse==false)
 	echo "problème<br>";
 }
 
+$classe=$_POST['classe'];
+$type=$_POST['type'];
+
+echo "<h3>Filtres</h3>";
+
+echo "classe : ".$classe."<br>";
+echo "type : ".$type."<br>";
+echo "<p>";
+
+echo "<a href=palmares_prelevements_select.html>Modifier les filtres</a><br>";
+
 $colonnes=pg_num_fields($reponse);
 $lignes=pg_numrows($reponse);
 
 
-$question='SELECT point, type, description, classe, COUNT(prelevements.id) AS nb FROM points_prelev, prelevements, limites_classes WHERE prelevements.id_point=points_prelev.id AND points_prelev.id_class=limites_classes.id GROUP BY point, type, description, classe ORDER BY nb DESC;';
+$question="SELECT point, type, description, classe, COUNT(prelevements.id) AS nb FROM points_prelev, prelevements, limites_classes WHERE prelevements.id_point=points_prelev.id AND points_prelev.id_class=limites_classes.id AND type LIKE '$type' AND classe LIKE '$classe'GROUP BY point, type, description, classe ORDER BY nb DESC;";
 
 $reponse=pg_query($a, $question);
 if ($reponse==false)

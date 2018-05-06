@@ -8,7 +8,9 @@
 <body>
 <a href="accueil.html">Retour à l'accueil</a>
 <h2>Prélèvements réalisés et résultats</h2>
-<br>
+
+<a href=points_details.php>Description des points de prélèvement</a><br>
+<a href=palmares_prelevements.php>Palmarès des points de prélèvement</a><br>
 <a href=prelevements_select.html>Filtrer</a>
 
 <!-- connection à la bdd -->

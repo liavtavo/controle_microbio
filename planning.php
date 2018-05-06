@@ -9,7 +9,7 @@
 <a href="accueil.html">Retour à l'accueil</a>
 <h2>Planning des prélèvements</h2>
 
-<a href=#planning>Planning des hebdomadaire des points de prélèvements</a><br>
+<a href=points_details.php>Description des points de prélèvement</a><br>
 <a href=planning_select.html>Filtrer</a>
 <!-- connection à la bdd -->
 

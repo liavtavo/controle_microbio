@@ -31,6 +31,7 @@ echo "type : ".$type."<br>";
 
 echo "<p>";
 echo "<a href=planning_select.html>modifier les filtres</a><p>";
+echo "<a href=points_details.php>Description des points de prélèvement</a><br>";
 
 $question="select * from planning_prelev";
 
