@@ -1,16 +1,16 @@
 <html>
 	<head>
-		<title>Palmarès des points de prélèvements</title>
+		<title>Palmarès résultats</title>
 		<meta http-equiv="content-type" content="text/html, charset=utf-8" />
 		<link rel="stylesheet" href="style.css" />
 	</head>
 
 <body>
 <a href="accueil.html">Retour à l'accueil</a>
-<h2>Palmarès du nombre de prélèvements par point</h2>
+<h2>Palmarès des résultats</h2>
 <a href=points_details.php>Description des points de prélèvement</a>
 <br>
-<a href=palmares_prelevements_select.html>Filtrer</a>
+<a href=resultats_select.html>Filtrer</a>
 
 <!-- connection à la bdd -->
 <?php
@@ -21,19 +21,9 @@ if ($a==false)
 	exit;
 }
 
-$question="select * from prelevements";
+echo "<p>";
 
-$reponse=pg_query($a, $question);
-if ($reponse==false)
-{
-	echo "problème<br>";
-}
-
-$colonnes=pg_num_fields($reponse);
-$lignes=pg_numrows($reponse);
-
-
-$question='SELECT point, type, description, classe, COUNT(prelevements.id) AS nb FROM points_prelev, prelevements, limites_classes WHERE prelevements.id_point=points_prelev.id AND points_prelev.id_class=limites_classes.id GROUP BY point, type, description, classe ORDER BY nb DESC;';
+$question="SELECT point, type, description, classe, COUNT(idp) AS nb FROM (SELECT prelevements.id AS idp, point, type, description, classe, ufc, limite, CASE WHEN ufc<limite THEN 'oui' WHEN ufc>=limite THEN 'non' ELSE NULL END AS conformité FROM prelevements, points_prelev, limites_classes, resultats WHERE prelevements.id_point=points_prelev.id AND points_prelev.id_class=limites_classes.id AND resultats.id_prelev=prelevements.id) AS x GROUP BY point, type, description, classe ORDER BY nb DESC;";
 
 $reponse=pg_query($a, $question);
 if ($reponse==false)
@@ -46,7 +36,7 @@ echo "<p>";
 $colonnes=pg_num_fields($reponse);
 $lignes=pg_numrows($reponse);
 
-echo "<table border id=#prelevements><caption>Nombre de prélèvements par point</caption>";
+echo "<table border id=#prelevements><caption>Nombre de résultats par points</caption>";
 echo "<tr>";
 for ($i=0; $i<$colonnes;$i++)
 {

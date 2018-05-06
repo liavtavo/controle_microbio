@@ -10,7 +10,8 @@
 <h2>Prélèvements réalisés et résultats</h2>
 
 <a href=points_details.php>Description des points de prélèvement</a><br>
-<a href=palmares_prelevements.php>Palmarès des points de prélèvement</a><br>
+<a href=palmares_prelevements.php>Palmarès du nombre de prélèvements par point</a><br>
+<a href=palmares_resultats.php>Palmarès du nombre de résultats par point</a><br>
 <a href=prelevements_select.html>Filtrer</a>
 
 <!-- connection à la bdd -->
