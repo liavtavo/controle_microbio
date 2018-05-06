@@ -7,18 +7,18 @@
 \usepackage[colorlinks]{hyperref}
 \author{Thomas~Liautaud\\Pharmacien des hôpitaux\\Grand Hôpital de l'Est Francilien}
 \date{26 avril 2018}
-\title{Surveillance microbiologique d'une unité de préparation de nutrition parentérale : gestion des enregistrements avec un serveur web et un système de gestion de base de données}
+\title{Un serveur web couplé à un système de gestion de base de données pour l'enregistrement des données de la surveillance microbiologique d'une zone d'atmosphère contrôlée}
 
 \begin{document}
 \maketitle
 \thanks{\begin{center}
-DU Bionformatique et Datamanagement\\ Ioannis Nicolis\\Université Paris-Descartes
+projet pour le \\DU Bionformatique et Datamanagement\\ Ioannis Nicolis\\Université Paris-Descartes
 \end{center}}
 \tableofcontents
 \section{Introduction}
 Les mélanges de nutrition parentérale sont utilisés pour les patients dont les apports en nutriments par voie orale sont impossibles ou insuffisants. Ces mélanges sont des préparations parentérales pour perfusion au sens de la Pharmacopée européenne\footnote{Pharmacopée européenne 9\up{ème} edition, EDQM}: elles sont stériles et apyrogènes.
 
-Pour la préparation des médicaments stériles les Bonnes Pratiques de préparation \footnote{Bonnes Pratiques de Préparations, ANSM, 2007} (BPP) imposent des  exigences  particulières en vue de réduire les risques de contamination microbienne, particulaire et pyrogène. Elles définissent notamment les zones à atmosphère contrôlée (ZAC) qui sont des locaux et équipements dont les qualités microbiologique et particulaire sont contrôlées.
+Pour la préparation des médicaments stériles les Bonnes pratiques de préparation \footnote{Bonnes Pratiques de Préparations, Afssaps, 2007} (BPP) imposent des  exigences  particulières en vue de réduire les risques de contamination microbienne, particulaire et pyrogène. Elles définissent notamment les zone d'atmosphère contrôlée (ZAC) qui sont des locaux et équipements dont les qualités microbiologique et particulaire sont contrôlées.
 
 Aux fins de préparation de médicaments stériles, 4 classes de ZAC sont distinguées. Des recommandations pour la surveillance microbiologique des ZAC sont présentées dans la table \ref{zac}. Les méthodes d'échantillonnages utilisent des boîtes de Petri, des échantillons volumétriques d'air et des contrôles de surface (prélevés au moyen de géloses de contact et/ou écouvillons).
 \begin{table}[h]
@@ -51,10 +51,10 @@ Les prélèvements microbiologiques sont traités par le laboratoire d'hygiène 
 
 Actuellement les prélèvements effectués et leurs résultats sont enregistrés sur un tableur.
 \section{Objectif}
-L'objectif de ce projet est de mettre à disposition des utilisateurs un serveur web qui doit permettre de saisir et consulter les prélèvements et les résultats.
+L'objectif de ce projet est de mettre à disposition des utilisateurs un serveur web couplé à système de gestion de base de données qui doit permettre de saisir et consulter les prélèvements microbiologiques et leurs résultats.
 \section{Materiel et méthode}
 
-\subsection{Base de données relationnelle}
+\subsection{Système de gestion de base de données}
  \subsubsection{Base de données postgreSQL}
 
 La base de données postgreSQL (version 9.3) est installée sur le système d'exploitation GNU/Linux (Linux Mint 17.3).
