@@ -7,6 +7,4 @@ Illustration par les données de surveillance d'une unité de préparation de nu
 
 Copyright (c) 2018 Thomas Liautaud
 
-liautaud.thomas@gmail.com
-
-[licence](LICENCE) [license](LICENSE)
+voir [LICENCE](LICENCE) (fr) ou [LICENSE](LICENSE) (en)
