@@ -47,6 +47,8 @@ echo "<p>";
 $colonnes=pg_num_fields($reponse);
 $lignes=pg_numrows($reponse);
 
+echo '<form method=\"POST\" action="prelevements_saisie_confirm.php">';
+
 echo '<table id="planning"><caption>Points de prélèvements sélectionnés</caption>';
 echo "<tr>";
 for ($i=0; $i<$colonnes;$i++)
@@ -60,12 +62,13 @@ for ($j=0; $j<$lignes; $j++)
 {
 	echo "<tr>";
 	$uneligne=pg_fetch_array($reponse,$j);
-	echo "<td>".$uneligne['classe']."</td><td>".$uneligne['type']."</td><td>".$uneligne['point']."</td><td>".$uneligne['id']."</td><td>".$uneligne['description']."</td><td><input type=radio name= value=".array('date_prelev' => $date_prelev, 'id_point' => $uneligne['id']).">oui</td>";
+	echo "<td>".$uneligne['classe']."</td><td>".$uneligne['type']."</td><td>".$uneligne['point']."</td><td>".$uneligne['id']."</td><td>".$uneligne['description']."</td><td><input type=radio name=a value=".array('date_prelev' => $date_prelev, 'id_point' => $uneligne['id']).">oui <input type=submit value=\"Enregistrer\"><input type=reset value=\"Décocher\"></td>";
 	echo "</tr>";
 }
 
 echo "</table>";
 
+echo "</form>";
 
 ?>
 
