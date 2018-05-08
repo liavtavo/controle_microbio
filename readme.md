@@ -5,6 +5,4 @@ Un serveur web couplé à un système de gestion de base de données pour l'enre
 
 Illustration par les données de surveillance d'une unité de préparation de nutrition parentérale pédiatrique. Voir le document [zac.pdf](zac.pdf) pour plus de détails.
 
-Copyright (c) 2018 Thomas Liautaud
-
-voir [LICENCE](LICENCE) (fr) ou [LICENSE](LICENSE) (en)
+Copyright (c) 2018 Thomas Liautaud ([CeCILL](http://www.cecill.info/))
