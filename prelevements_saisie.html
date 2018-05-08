@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Sélection des prélèvements</title>
+        <meta http-equiv="content-type" content="text/html, charset=utf-8"/>
+	<link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+	
+	<form method="POST", action="prelevements_saisie.php">
+	<fieldset>
+	<legend>Sélectionnez les filtres des prélèvements à saisir</legend>
+	Jour du planning<br>
+	<select name=jour>
+		<option value=%>tous</option>
+		<option value=lundi>lundi</option>
+		<option value=mardi>mardi</option>
+		<option value=mercredi>mercredi</option>
+		<option value=jeudi>jeudi</option>
+		<option value=vendredi>vendredi</option>
+
+	</select>
+<p>
+Date de prélèvement<br>
+<input type=date name=date_prelev required=required>
+
+<p>
+Classe<br>
+<input type=radio name=classe value=A>A
+<input type=radio name=classe value=D>D
+<input type=radio name=classe value=% checked=checked>Toutes
+
+<p>
+Type<br>
+<input type=radio name=type value=Gants>Gants
+<input type=radio name=type value=Air>Air
+<input type=radio name=type value=Surface>Surface
+<input type=radio name=type value=% checked=checked>Tous
+
+<P>
+<input type=submit value="Afficher les points de prélèvements sélectionnés"><br>
+<input type=reset value="réinitialiser"><br>
+<input type=button onclick="alert('remplissez les champs')" value="Aide">
+
+</form>
+</fieldset>
+	
+	
+	
+    </body>
+</html>
