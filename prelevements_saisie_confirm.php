@@ -6,9 +6,6 @@
 	</head>
 
 <body>
-<a href="accueil.html">Retour à l'accueil</a>
-<h2>Confirmation de l'enregistrement du prélèvement</h2>
-
 <!-- connection à la bdd -->
 
 <?php
@@ -34,11 +31,13 @@ if ($reponse==false)
 	}
 else
 	{
-	echo "insertion réussie";
+	echo "Enregistrement du prélèvement réussi!<br>";
 	}
 
-?>
 
+?>
+<p>
+Cliquer sur précédent pour revenir à la sélection.
 
 </body>
 </html>
