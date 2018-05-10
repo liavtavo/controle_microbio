@@ -7,7 +7,7 @@
 
 <body>
 <!-- connection à la bdd -->
-
+<h2>Confirmation des enregistrements</h2>
 <?php
 $a=pg_connect("dbname=bacterio_upnp user=pharmacien host=127.0.0.1 password=zac");
 if ($a==false)
@@ -17,27 +17,46 @@ if ($a==false)
 }
 
 $date_prelev=$_GET['date_prelev'];
-echo "Date de prélèvement : ".$date_prelev."<br>";
+echo "Date de prélèvement : <font color=blue>".$date_prelev."</font><br>";
 
-$id_point=$_GET['id_point'];
-echo "Point : ".$id_point."<br>";
+$lignes=$_GET['lignes'];
+echo "<p>";
 
-$question="INSERT INTO prelevements (date_prelev, id_point) VALUES ('$date_prelev', $id_point);";
-
-$reponse=pg_query($a, $question);
-if ($reponse==false)
+for ($j=0; $j<$lignes; $j++)
+{
+$id_point=$_GET['id_point'.$j.''];
+	if ($id_point<>NULL)
 	{
-	echo "problème de requête<br>";
+	$quel_nom = "SELECT point, id FROM points_prelev WHERE id=$id_point;";
+	$nom = pg_query($a, $quel_nom);
+		if ($nom==false)
+		{
+		echo "problème de requête du nom<br>";
+		}
+	$point = pg_fetch_result($nom, 0);
+	$question="INSERT INTO prelevements (date_prelev, id_point) VALUES ('$date_prelev', $id_point);";
+
+	$reponse=pg_query($a, $question);
+		if ($reponse==false)
+		{
+			echo "Problème : le prélèvement du <font color=blue>".$point."</font> (id ".$id_point.") n'a pas été enregistré !<br>";
+		}
+		else
+		{
+			echo "Le prélèvement du <font color=blue>".$point."</font> (id ".$id_point.") est enregistré.<br>";
+		}
+		
 	}
-else
-	{
-	echo "Enregistrement du prélèvement réussi!<br>";
-	}
+}
+
+
 
 
 ?>
 <p>
-Cliquer sur précédent pour revenir à la sélection.
+<a href="prelevements_saisie.html">Saisir de nouveaux prélèvements</a><br>
+<a href="accueil.html">Retour à l'accueil</a>
+
 
 </body>
 </html>

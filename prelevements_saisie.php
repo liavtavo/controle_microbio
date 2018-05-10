@@ -32,7 +32,7 @@ echo "type : ".$type."<br>";
 echo "<p>";
 echo "<a href=prelevements_saisie.html>modifier les filtres</a><p>";
 
-$question="SELECT classe, type, point, points_prelev.id, description FROM planning_prelev, limites_classes, points_prelev, jours_prelev WHERE jours_prelev.id=planning_prelev.id_jour AND points_prelev.id=planning_prelev.id_point AND points_prelev.id_class=limites_classes.id AND jour LIKE '$jour' AND classe LIKE '$classe' AND type LIKE '$type';";
+$question="SELECT classe, type, point, points_prelev.id, description FROM planning_prelev, limites_classes, points_prelev, jours_prelev WHERE jours_prelev.id=planning_prelev.id_jour AND points_prelev.id=planning_prelev.id_point AND points_prelev.id_class=limites_classes.id AND jour LIKE '$jour' AND classe LIKE '$classe' AND type LIKE '$type' ORDER BY classe, type, point;";
 
 $reponse=pg_query($a, $question);
 if ($reponse==false)
@@ -46,6 +46,8 @@ $colonnes=pg_num_fields($reponse);
 $lignes=pg_numrows($reponse);
 
 echo '<form method=\"GET\" action="prelevements_saisie_confirm.php">';
+
+echo '<input type="hidden" name="lignes" value="'.$lignes.'">';
 
 echo '<h3>Date de prélèvement</h3>';
 echo '<input type=date name=date_prelev required=required>';
@@ -65,11 +67,13 @@ for ($j=0; $j<$lignes; $j++)
 {
 	echo "<tr>";
 	$uneligne=pg_fetch_array($reponse,$j);
-	echo "<td>".$uneligne['classe']."</td><td>".$uneligne['type']."</td><td>".$uneligne['point']."</td><td>".$uneligne['id']."</td><td>".$uneligne['description']."</td><td><input type=radio name=id_point value=".$uneligne['id'].">oui <input type=submit value=\"Enregistrer\"></td>";
+	echo "<td>".$uneligne['classe']."</td><td>".$uneligne['type']."</td><td>".$uneligne['point']."</td><td>".$uneligne['id']."</td><td>".$uneligne['description']."</td><td><input type=radio name=id_point".$j." value=".$uneligne['id'].">oui</td>";
 	echo "</tr>";
 }
 
 echo "</table>";
+echo "<p>";
+echo '<input type=submit value="Enregistrer la sélection">';
 echo "<p>";
 echo '<input type=reset value="Décocher la sélection">';
 
