@@ -32,7 +32,14 @@ echo "type : ".$type."<br>";
 echo "<p>";
 echo "<a href=prelevements_saisie.html>modifier les filtres</a><p>";
 
-$question="SELECT classe, type, point, points_prelev.id, description FROM planning_prelev, limites_classes, points_prelev, jours_prelev WHERE jours_prelev.id=planning_prelev.id_jour AND points_prelev.id=planning_prelev.id_point AND points_prelev.id_class=limites_classes.id AND jour LIKE '$jour' AND classe LIKE '$classe' AND type LIKE '$type' ORDER BY classe, type, point;";
+if($jour<>'%')
+{
+$question="SELECT classe, type, point, points_prelev.id, description FROM planning_prelev, limites_classes, points_prelev, jours_prelev WHERE jours_prelev.id=planning_prelev.id_jour AND points_prelev.id=planning_prelev.id_point AND points_prelev.id_class=limites_classes.id AND jour LIKE '$jour' AND classe LIKE '$classe' AND type LIKE '$type' ORDER BY classe, type, description, point;";
+}
+else
+{
+$question="SELECT classe, type, point, points_prelev.id, description FROM limites_classes, points_prelev WHERE points_prelev.id_class=limites_classes.id AND classe LIKE '$classe' AND type LIKE '$type' ORDER BY classe, type, description, point;";
+}
 
 $reponse=pg_query($a, $question);
 if ($reponse==false)
