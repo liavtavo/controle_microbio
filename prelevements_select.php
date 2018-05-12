@@ -38,7 +38,6 @@ echo "<p>";
 
 echo "<a href=prelevements_select.html>Modifier les filtres</a><br>";
 
-<<<<<<< HEAD
 $question="select * from prelevements";
 
 $reponse=pg_query($a, $question);
@@ -58,10 +57,6 @@ else
 {
 $question="SELECT * FROM (SELECT prelevements.id AS \"No\", prelevements.date_prelev AS date, point, type, description, classe, ufc, limite, CASE WHEN ufc<limite THEN 'oui' WHEN ufc>=limite THEN 'non' ELSE NULL END AS conformité, germe, CASE WHEN tel IS TRUE THEN 'oui' WHEN tel IS FALSE THEN 'non' ELSE 'non renseigné' END AS téléphoné, CASE WHEN sign IS TRUE THEN 'oui' WHEN sign IS FALSE THEN 'non' ELSE 'non renseigné' END AS signé FROM prelevements LEFT OUTER JOIN resultats ON (resultats.id_prelev=prelevements.id), points_prelev, limites_classes WHERE prelevements.id_point=points_prelev.id AND points_prelev.id_class=limites_classes.id) AS x WHERE x.date BETWEEN '$date_debut' AND '$date_fin' AND x.classe LIKE '$classe' AND x.type LIKE '$type' ORDER BY \"No\" DESC;";
 }
-=======
-
-$question="SELECT * FROM (SELECT prelevements.id AS \"No\", prelevements.date_prelev AS date, point, type, description, classe, ufc, limite, CASE WHEN ufc<limite THEN 'oui' WHEN ufc>=limite THEN 'non' ELSE NULL END AS conformité, germe, CASE WHEN tel IS TRUE THEN 'oui' WHEN tel IS FALSE THEN 'non' ELSE 'non renseigné' END AS téléphoné, CASE WHEN sign IS TRUE THEN 'oui' WHEN sign IS FALSE THEN 'non' ELSE 'non renseigné' END AS signé FROM prelevements, points_prelev, limites_classes, resultats WHERE prelevements.id_point=points_prelev.id AND points_prelev.id_class=limites_classes.id AND resultats.id_prelev=prelevements.id) AS x WHERE x.date BETWEEN '$date_debut' AND '$date_fin' AND x.classe LIKE '$classe' AND x.type LIKE '$type' AND x.conformité LIKE '$conf' AND x.téléphoné LIKE '$tel' AND x.signé LIKE '$sign';";
->>>>>>> saisiep
 
 $reponse=pg_query($a, $question);
 if ($reponse==false)
