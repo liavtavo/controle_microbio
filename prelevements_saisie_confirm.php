@@ -49,13 +49,10 @@ $id_point=$_GET['id_point'.$j.''];
 	}
 }
 
-
+header("refresh:10;url=accueil.html");
 
 
 ?>
-<p>
-<a href="prelevements_saisie.html">Saisir de nouveaux prélèvements</a><br>
-<a href="accueil.html">Retour à l'accueil</a>
 
 
 </body>
