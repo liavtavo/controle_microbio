@@ -223,3 +223,4 @@ UPDATE resultats SET type_rendu = 'téléphoné' WHERE germe LIKE '';
 select * from resultats order by id desc;
 \s /media/www-dev-local/projet-LAPP/modif_table_resultats.txt
 \s modif_table_resultats.txt
+alter table resultats alter column type_rendu SET NOT NULL;
