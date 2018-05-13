@@ -24,8 +24,6 @@ $rendu=$_POST['rendu'];
 
 echo "<h3>Filtres sélectionnés</h3>";
 echo "date des prélèvement : ".$datep."<br>";
-echo "Type de rendu : ".$rendu."<br>";
-
 
 echo "<p>";
 echo "<a href=resultats_saisie.html>modifier les filtres</a><p>";
@@ -46,6 +44,9 @@ $lignes=pg_numrows($reponse);
 echo '<form method=\"GET\" action="prelevements_saisie_confirm.php">';
 
 echo '<input type="hidden" name="lignes" value="'.$lignes.'">';
+echo "<p>";
+echo '<h3>Date des résultats</h3>';
+echo '<input type=date name=date_res required=required>';
 
 echo "<p>";
 
