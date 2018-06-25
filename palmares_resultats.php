@@ -23,7 +23,7 @@ if ($a==false)
 
 echo "<p>";
 
-$question="SELECT point, type, description, classe, COUNT(idp) AS nb FROM (SELECT prelevements.id AS idp, point, type, description, classe, ufc, limite, CASE WHEN ufc<limite THEN 'oui' WHEN ufc>=limite THEN 'non' ELSE NULL END AS conformité FROM prelevements, points_prelev, limites_classes, resultats WHERE prelevements.id_point=points_prelev.id AND points_prelev.id_class=limites_classes.id AND resultats.id_prelev=prelevements.id AND sign=TRUE) AS x GROUP BY point, type, description, classe ORDER BY nb DESC;";
+$question="SELECT point, type, description, classe, COUNT(idp) AS nb FROM (SELECT prelevements.id AS idp, point, type, description, classe, ufc, limite, CASE WHEN ufc<limite THEN 'oui' WHEN ufc>=limite THEN 'non' ELSE NULL END AS conformité FROM prelevements, points_prelev, limites_classes, resultats WHERE prelevements.id_point=points_prelev.id AND points_prelev.id_class=limites_classes.id AND resultats.id_prelev=prelevements.id AND type_rendu='signé') AS x GROUP BY point, type, description, classe ORDER BY nb DESC;";
 
 $reponse=pg_query($a, $question);
 if ($reponse==false)
