@@ -185,7 +185,7 @@ PRIMARY KEY (id\_jour, id\_point)
 
 \item[Table prelevements] (Table \ref{prelevements}) liste les prélèvements réalisés. Elle a été créée avec la requête :
 \begin{tabbing}
-CREATE TABLE prelevements\\
+CREATE TABLE prelevements(\\
 id SERIAL PRIMARY KEY,\\
 date\_prelev DATE NOT NULL,\\
 id\_point INTEGER NOT NULL REFERENCES points\_prelev(id)
@@ -209,13 +209,12 @@ id\_point INTEGER NOT NULL REFERENCES points\_prelev(id)
 \item[Table resultats] (Table \ref{resultats}) pour enregistrer les résultats des prélèvements. Elle a été créée avec la requête :
 
 \begin{tabbing}
-CREATE TABLE resultats\\
+CREATE TABLE resultats(\\
 id\_prelev INTEGER REFERENCES prelevements(id),\\
 \nopagebreak
-tel BOOLEAN,\\
-sign BOOLEAN,\\
 ufc INTEGER NOT NULL,\\
-germe VARCHAR(100),
+germe VARCHAR(100),\\
+type\_rendu VARCHAR(10) NOT NULL
 );
 \end{tabbing}
 \begin{table}

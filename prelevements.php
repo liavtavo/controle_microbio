@@ -24,24 +24,12 @@ if ($a==false)
 	exit;
 }
 
-$question="select * from prelevements";
+$question='SELECT prelevements.id AS "No", prelevements.date_prelev AS date, point, type, description, classe, ufc, limite, CASE WHEN ufc<limite THEN \'oui\' WHEN ufc>=limite THEN \'non\' ELSE NULL END AS conformité, germe, type_rendu FROM prelevements LEFT OUTER JOIN resultats ON (resultats.id_prelev=prelevements.id), points_prelev, limites_classes WHERE prelevements.id_point=points_prelev.id AND points_prelev.id_class=limites_classes.id  ORDER BY prelevements.id DESC;';
 
 $reponse=pg_query($a, $question);
 if ($reponse==false)
 {
-	echo "problème<br>";
-}
-
-$colonnes=pg_num_fields($reponse);
-$lignes=pg_numrows($reponse);
-
-
-$question='SELECT prelevements.id AS "No", prelevements.date_prelev AS date, point, type, description, classe, ufc, limite, CASE WHEN ufc<limite THEN \'oui\' WHEN ufc>=limite THEN \'non\' ELSE NULL END AS conformité, germe, CASE WHEN tel IS TRUE THEN \'oui\' WHEN tel IS FALSE THEN \'non\' ELSE \'non renseigné\' END AS téléphoné, CASE WHEN sign IS TRUE THEN \'oui\' WHEN sign IS FALSE THEN \'non\' ELSE \'non renseigné\' END AS signé FROM prelevements LEFT OUTER JOIN resultats ON (resultats.id_prelev=prelevements.id), points_prelev, limites_classes WHERE prelevements.id_point=points_prelev.id AND points_prelev.id_class=limites_classes.id  ORDER BY prelevements.id DESC;';
-
-$reponse=pg_query($a, $question);
-if ($reponse==false)
-{
-	echo "problème<br>";
+	echo "problème de requête<br>";
 }
 
 echo "<p>";
@@ -61,7 +49,7 @@ for ($j=0; $j<$lignes; $j++)
 {
 	echo "<tr>";
 	$uneligne=pg_fetch_array($reponse,$j);
-	echo "<td>".$uneligne['No']."</td><td>".$uneligne['date']."</td><td>".$uneligne['point']."</td><td>".$uneligne['type']."</td><td>".$uneligne['description']."</td><td>".$uneligne['classe']."</td><td>".$uneligne['ufc']."</td><td>".$uneligne['limite']."</td><td>".$uneligne['conformité']."</td><td>".$uneligne['germe']."</td><td>".$uneligne['téléphoné']."</td><td>".$uneligne['signé']."</td>";
+	echo "<td>".$uneligne['No']."</td><td>".$uneligne['date']."</td><td>".$uneligne['point']."</td><td>".$uneligne['type']."</td><td>".$uneligne['description']."</td><td>".$uneligne['classe']."</td><td>".$uneligne['ufc']."</td><td>".$uneligne['limite']."</td><td>".$uneligne['conformité']."</td><td>".$uneligne['germe']."</td><td>".$uneligne['type_rendu']."</td>";
 	echo "</tr>";
 }
 

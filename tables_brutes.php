@@ -227,7 +227,7 @@ for ($j=0; $j<$lignes; $j++)
 echo "</table>";
 echo "<p>";
 
-$question="select * from resultats limit 30";
+$question="select * from resultats order by id limit 30";
 
 $reponse=pg_query($a, $question);
 if ($reponse==false)
@@ -251,7 +251,7 @@ for ($j=0; $j<$lignes; $j++)
 {
 	echo "<tr>";
 	$uneligne=pg_fetch_array($reponse,$j);
-	echo "<td>".$uneligne['id']."</td><td>".$uneligne['id_prelev']."</td><td>".$uneligne['date_res']."</td><td>".$uneligne['tel']."</td><td>".$uneligne['sign']."</td><td>".$uneligne['ufc']."</td><td>".$uneligne['germe']."</td>";
+	echo "<td>".$uneligne['id']."</td><td>".$uneligne['id_prelev']."</td><td>".$uneligne['date_res']."</td><td>".$uneligne['ufc']."</td><td>".$uneligne['germe']."</td><td>".$uneligne['type_rendu']."</td>";
 	echo "</tr>";
 }
 
