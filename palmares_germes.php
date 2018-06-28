@@ -1,15 +1,15 @@
 <html>
-	<head>
-		<title>Palmarès germes</title>
-		<meta http-equiv="content-type" content="text/html, charset=utf-8" />
-		<link rel="stylesheet" href="style.css" />
-	</head>
+    <head>
+	<title>Palmarès germes</title>
+	<meta http-equiv="content-type" content="text/html, charset=utf-8" />
+	<link rel="stylesheet" href="style.css" />
+    </head>
 
-<body>
-<a href="accueil.html">Retour à l'accueil</a>
-<h2>Palmarès du nombre de résultats par germe</h2>
+    <body>
+        <a href="accueil.html">Retour à l'accueil</a>
+        <h2>Palmarès du nombre de résultats par germe</h2>
 
-<a href=germes_select.html>Filtrer</a>
+        <a href=germes_select.html>Filtrer</a>
 
 <!-- connection à la bdd -->
 <?php
