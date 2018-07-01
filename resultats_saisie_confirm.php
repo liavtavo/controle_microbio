@@ -6,7 +6,7 @@
     </head>
 
     <body>
-        <!-- connection à la bdd -->
+        <!-- Enregistrements des résultats saisis dans la page resultats_saisie.php -->
         <h2>Confirmation des enregistrements</h2>
         <?php
         $a=pg_connect("dbname=bacterio_upnp user=pharmacien host=127.0.0.1 password=zac");
@@ -22,6 +22,8 @@
         $lignes=$_GET['lignes'];
         echo "<p>";
 
+        /*Parcours de chaque ligne pour enregitrer dans la table resultats
+           les points renseignés.*/
         for ($j=0; $j<$lignes; $j++)
         {
             $no_prelev=$_GET['no_prelev'.$j.''];

@@ -6,6 +6,7 @@
     </head>
 
     <body>
+        <!-- Saisie des résultats sélectionnés avec resultats_saisie.html -->
         <a href="accueil.html">Retour à l'accueil</a>
         <h2>Sélection des résultats</h2>
 
@@ -20,8 +21,7 @@
         }
 
         $datep=$_POST['datep'];
-        $rendu=$_POST['rendu'];
-
+        //Affichage de la date sélectionnée.
         echo "<h3>Date des prélèvements</h3>";
         echo "".$datep."<br>";
 
@@ -41,8 +41,12 @@
         $colonnes=pg_num_fields($reponse);
         $lignes=pg_numrows($reponse);
 
+        /*Affichage d'un tableau des prélèvements sélectionnés avec 3 colonnes
+        supplémentaires pour enregistrer avec la méthode GET les résultats
+        des prélèvements.*/
         echo '<form method=\"GET\" action="resultats_saisie_confirm.php">';
 
+        //Ajout d'un enregistrement du nombre de lignes du tableau pour utiliser une boucle for sur le nombre de lignes pour l'enregistrement des résultats.
         echo '<input type="hidden" name="lignes" value="'.$lignes.'">';
         echo "<p>";
         echo '<h3>Date des résultats</h3>';
@@ -53,6 +57,8 @@
 
         echo "<p>";
 
+        /*Tableau avec les 3 colonnes d'enregistrement : type de rendu, nombre
+        d'UFC et nom du germe.*/
         echo '<table id="prelevements"><caption>Saisie des résultats des points de prélèvements sélectionnés</caption>';
         echo "<tr>";
         for ($i=0; $i<$colonnes;$i++)
@@ -66,7 +72,15 @@
         {
             echo "<tr>";
             $uneligne=pg_fetch_array($reponse,$j);
-            echo "<td>".$uneligne['No de prélèvement']."</td><td>".$uneligne['point']."</td><td>".$uneligne['description']."</td><td>".$uneligne['classe']."</td><td>".$uneligne['type']."</td><td>".$uneligne['limite']."</td><td><input type=radio name=no_prelev".$j." value=".$uneligne['No de prélèvement'].">oui</td><td><input type=number name=ufc".$j."> UFC</td><td><input type=text name=germe".$j."></td>";
+            echo "<td>".$uneligne['No de prélèvement']."</td>
+                  <td>".$uneligne['point']."</td>
+                  <td>".$uneligne['description']."</td>
+                  <td>".$uneligne['classe']."</td>
+                  <td>".$uneligne['type']."</td>
+                  <td>".$uneligne['limite']."</td>
+                  <td><input type=radio name=no_prelev".$j." value=".$uneligne['No de prélèvement'].">oui</td>
+                  <td><input type=number name=ufc".$j."> UFC</td>
+                  <td><input type=text name=germe".$j."></td>";
 	          echo "</tr>";
         }
 

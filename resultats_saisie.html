@@ -2,19 +2,20 @@
     <head>
         <title>Sélection des résultats</title>
         <meta http-equiv="content-type" content="text/html, charset=utf-8"/>
-	<link rel="stylesheet" href="style.css" />
+	      <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-	<form method="POST", action="resultats_saisie.php">
-	    <fieldset>
-	        <legend>Sélectionnez les filtres des résultats à saisir</legend>
+        <!-- Saisie des filtres des résultats à enregistrer -->  
+	      <form method="POST", action="resultats_saisie.php">
+	          <fieldset>
+	              <legend>Sélectionnez les filtres des résultats à saisir</legend>
 
                 Date des prélèvements<input type=date name=datep required=required><br>
                 <input type=submit value="Afficher les points de prélèvements sélectionnés"><p>
-                    <input type=reset value="réinitialiser"><br>
-                    <input type=button onclick="alert('remplissez les champs')" value="Aide">
+                <input type=reset value="réinitialiser"><br>
+                <input type=button onclick="alert('remplissez les champs')" value="Aide">
 
         </form>
-        </fieldset>
+            </fieldset>
     </body>
 </html>

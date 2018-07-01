@@ -1,12 +1,12 @@
 <html>
     <head>
-        <title>confirmation</title>
+        <title>enregistrement des prélèvements</title>
         <meta http-equiv="content-type" content="text/html, charset=utf-8" />
         <link rel="stylesheet" href="style.css" />
     </head>
 
     <body>
-        <!-- connection à la bdd -->
+        <!-- Enregistrement des prélèvements sélectionnés dans prelevments_saisie.php dans la table prelevements -->
         <h2>Confirmation des enregistrements</h2>
         <?php
         $a=pg_connect("dbname=bacterio_upnp user=pharmacien host=127.0.0.1 password=zac");
@@ -18,7 +18,8 @@
 
         $date_prelev=$_GET['date_prelev'];
         echo "Date de prélèvement : <font color=blue>".$date_prelev."</font><br>";
-
+        //Parcours par une boucle for des lignes du tableau de sélection.
+        //Chaque point sélectionné est enregistré dans la table prelevements.
         $lignes=$_GET['lignes'];
         echo "<p>";
 
@@ -45,7 +46,7 @@
 		            {
 			              echo "Le prélèvement du <font color=blue>".$point."</font> (id ".$id_point.") est enregistré.<br>";
 		            }
-		            
+
 	          }
         }
 

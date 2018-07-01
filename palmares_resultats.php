@@ -6,6 +6,7 @@
 	  </head>
 
     <body>
+        <!-- Présentation d'un tableau du nombre de résultats par point. -->
         <a href="accueil.html">Retour à l'accueil</a>
         <h2>Palmarès des résultats signés</h2>
         <a href=points_details.php>Description des points de prélèvement</a>
@@ -22,7 +23,8 @@
         }
 
         echo "<p>";
-
+        //extraction des données de la table resultats. Le nombre de résulats par point est classé par nombre décroissant. 
+        //Seuls les résulats de type signés sont présentés.
         $question="SELECT point, type, description, classe, COUNT(idp) AS nb FROM (SELECT prelevements.id AS idp, point, type, description, classe, ufc, limite, CASE WHEN ufc<limite THEN 'oui' WHEN ufc>=limite THEN 'non' ELSE NULL END AS conformité FROM prelevements, points_prelev, limites_classes, resultats WHERE prelevements.id_point=points_prelev.id AND points_prelev.id_class=limites_classes.id AND resultats.id_prelev=prelevements.id AND type_rendu='signé') AS x GROUP BY point, type, description, classe ORDER BY nb DESC;";
 
         $reponse=pg_query($a, $question);
@@ -48,7 +50,11 @@
         {
 	          echo "<tr>";
 	          $uneligne=pg_fetch_array($reponse,$j);
-	          echo "<td>".$uneligne['point']."</td><td>".$uneligne['type']."</td><td>".$uneligne['description']."</td><td>".$uneligne['classe']."</td><td>".$uneligne['nb']."</td>";
+	          echo "<td>".$uneligne['point']."</td>
+                  <td>".$uneligne['type']."</td>
+                  <td>".$uneligne['description']."</td>
+                  <td>".$uneligne['classe']."</td>
+                  <td>".$uneligne['nb']."</td>";
 	          echo "</tr>";
         }
 

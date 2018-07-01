@@ -4,7 +4,7 @@
 	<meta http-equiv="content-type" content="text/html, charset=utf-8" />
 	<link rel="stylesheet" href="style.css" />
     </head>
-
+    <!-- Classement par ordre décroissants du nombre de résults par germe. --> 
     <body>
         <a href="accueil.html">Retour à l'accueil</a>
         <h2>Palmarès du nombre de résultats par germe</h2>
@@ -21,7 +21,7 @@
         }
 
         echo "<p>";
-
+        //compte du nombre de résultats par germe. Et classement décroissant par le nombre de résulats. 
         $question="SELECT germe, COUNT(resultats.id) AS nb FROM resultats, prelevements, limites_classes, points_prelev WHERE resultats.id_prelev=prelevements.id AND prelevements.id_point=points_prelev.id AND points_prelev.id_class=limites_classes.id AND germe NOT LIKE 'NA' AND germe NOT LIKE '' GROUP BY germe, type, description, classe ORDER BY nb DESC;";
 
         $reponse=pg_query($a, $question);
@@ -29,7 +29,7 @@
         {
 	    echo "problème<br>";
         }
-        
+
         echo "<p>"; 
 
         $colonnes=pg_num_fields($reponse);
@@ -47,7 +47,8 @@
         {
 	    echo "<tr>";
 	    $uneligne=pg_fetch_array($reponse,$j);
-	    echo "<td>".$uneligne['germe']."</td><td>".$uneligne['nb']."</td>";
+	    echo "<td>".$uneligne['germe']."</td>
+            <td>".$uneligne['nb']."</td>";
 	    echo "</tr>";
         }
 
