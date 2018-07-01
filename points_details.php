@@ -6,7 +6,11 @@
 	  </head>
 
     <body>
+
+        <!-- Page de description des points de prélèvements de la zac -->
         <a href="accueil.html">Retour à l'accueil</a>
+
+        <!-- liens vers chaque zone -->
         <h1>Points de prélèvement</h1>
         <a href=#classeA>Points de l'isolateur en classe A</a><br>
         <a href=#auto>Points de l'automate et de la balance en classe A</a><br>
@@ -16,7 +20,7 @@
 
         <img src="points_iso.png" width=70% height=auto>
         
-        <!-- connection à la bdd -->
+        <!-- connection à la bdd et sélection des points définis dans les tables de la bdd bacterio_upnp-->
         <?php
         $a=pg_connect("dbname=bacterio_upnp user=thomas host=127.0.0.1 password=bacterio");
         if ($a==false)
@@ -97,7 +101,10 @@
         {
 	          echo "<tr>";
 	          $uneligne=pg_fetch_array($reponse,$j);
-	          echo "<td>".$uneligne['point']."</td><td>".$uneligne['dispositif']."</td><td>".$uneligne['type']."</td><td>".$uneligne['description']."</td>";
+	          echo "<td>".$uneligne['point']."</td>
+                  <td>".$uneligne['dispositif']."</td>
+                  <td>".$uneligne['type']."</td>
+                  <td>".$uneligne['description']."</td>";
 	          echo "</tr>";
         }
 
@@ -135,7 +142,10 @@
         {
 	          echo "<tr>";
 	          $uneligne=pg_fetch_array($reponse,$j);
-	          echo "<td>".$uneligne['point']."</td><td>".$uneligne['dispositif']."</td><td>".$uneligne['type']."</td><td>".$uneligne['description']."</td>";
+	          echo "<td>".$uneligne['point']."</td>
+                  <td>".$uneligne['dispositif']."</td>
+                  <td>".$uneligne['type']."</td>
+                  <td>".$uneligne['description']."</td>";
 	          echo "</tr>";
         }
 

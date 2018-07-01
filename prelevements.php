@@ -4,15 +4,15 @@
         <meta http-equiv="content-type" content="text/html, charset=utf-8" />
         <link rel="stylesheet" href="style.css" />
     </head>
-
+   <!-- Tableau des prélèvements et des résultats extraits de la bdd bacterion_upnp --> 
     <body>
         <a href="accueil.html">Retour à l'accueil</a>
         <h2>Prélèvements réalisés et résultats</h2>
 
         <a href=points_details.php>Description des points de prélèvement</a><br>
-        <a href=palmares_prelevements.php>Palmarès du nombre de prélèvements par point</a><br>
-        <a href=palmares_resultats.php>Palmarès du nombre de résultats par point</a><br>
-        <a href=palmares_germes.php>Palmarès du nombre de résultats par germe</a><br>
+        <a href=palmares_prelevements.php>Classement du nombre de prélèvements par point</a><br>
+        <a href=palmares_resultats.php>Classement du nombre de résultats par point</a><br>
+        <a href=palmares_germes.php>Classement du nombre de résultats par germe</a><br>
         <a href=prelevements_select.html>Filtrer</a>
 
         <!-- connection à la bdd -->
@@ -23,7 +23,7 @@
             echo "problème de connexion<br>";
             exit;
         }
-
+        //Sélection de tous les enregistrements de la table prelevements et de ceux de la table resultats quand ils existent par un LEFT OUTER JOIN
         $question='SELECT prelevements.id AS "No", prelevements.date_prelev AS date, point, type, description, classe, ufc, limite, CASE WHEN ufc<limite THEN \'oui\' WHEN ufc>=limite THEN \'non\' ELSE NULL END AS conformité, germe, type_rendu FROM prelevements LEFT OUTER JOIN resultats ON (resultats.id_prelev=prelevements.id), points_prelev, limites_classes WHERE prelevements.id_point=points_prelev.id AND points_prelev.id_class=limites_classes.id  ORDER BY prelevements.id DESC;';
 
         $reponse=pg_query($a, $question);
@@ -49,7 +49,17 @@
         {
             echo "<tr>";
             $uneligne=pg_fetch_array($reponse,$j);
-            echo "<td>".$uneligne['No']."</td><td>".$uneligne['date']."</td><td>".$uneligne['point']."</td><td>".$uneligne['type']."</td><td>".$uneligne['description']."</td><td>".$uneligne['classe']."</td><td>".$uneligne['ufc']."</td><td>".$uneligne['limite']."</td><td>".$uneligne['conformité']."</td><td>".$uneligne['germe']."</td><td>".$uneligne['type_rendu']."</td>";
+            echo "<td>".$uneligne['No']."</td>
+                  <td>".$uneligne['date']."</td>
+                  <td>".$uneligne['point']."</td>
+                  <td>".$uneligne['type']."</td>
+                  <td>".$uneligne['description']."</td>
+                  <td>".$uneligne['classe']."</td>
+                  <td>".$uneligne['ufc']."</td>
+                  <td>".$uneligne['limite']."</td>
+                  <td>".$uneligne['conformité']."</td>
+                  <td>".$uneligne['germe']."</td>
+                  <td>".$uneligne['type_rendu']."</td>";
 	          echo "</tr>";
         }
 

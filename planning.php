@@ -4,12 +4,14 @@
 		    <meta http-equiv="content-type" content="text/html, charset=utf-8" />
 		    <link rel="stylesheet" href="style.css" />
 	  </head>
-
+   <!-- Extraction du planning de prélèvement depuis la bdd bacterio_upnp --> 
     <body>
         <a href="accueil.html">Retour à l'accueil</a>
         <h2>Planning des prélèvements</h2>
 
         <a href=points_details.php>Description des points de prélèvement</a><br>
+
+        <!-- Lien vers un filtre de sélection du planning -->
         <a href=planning_select.html>Filtrer</a>
         <!-- connection à la bdd -->
 
@@ -56,7 +58,11 @@
         {
 	          echo "<tr>";
 	          $uneligne=pg_fetch_array($reponse,$j);
-	          echo "<td>".$uneligne['jour']."</td><td>".$uneligne['classe']."</td><td>".$uneligne['type']."</td><td>".$uneligne['point']."</td><td>".$uneligne['description']."</td>";
+	          echo "<td>".$uneligne['jour']."</td>
+                  <td>".$uneligne['classe']."</td>
+                  <td>".$uneligne['type']."</td>
+                  <td>".$uneligne['point']."</td>
+                  <td>".$uneligne['description']."</td>";
 	          echo "</tr>";
         }
 

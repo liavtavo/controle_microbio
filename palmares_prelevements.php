@@ -4,7 +4,7 @@
 	<meta http-equiv="content-type" content="text/html, charset=utf-8" />
 	<link rel="stylesheet" href="style.css" />
     </head>
-
+    <!-- Affichage du classement du nombre de prélèvements par point --> 
     <body>
         <a href="accueil.html">Retour à l'accueil</a>
         <h2>Palmarès du nombre de prélèvements par point</h2>
@@ -32,7 +32,7 @@
         $colonnes=pg_num_fields($reponse);
         $lignes=pg_numrows($reponse);
 
-
+        //Sélection de la table prelevment de la bdd bacterio_upnp classée par le nombre de points de prélèvements en ordre décroissant.
         $question='SELECT point, type, description, classe, COUNT(prelevements.id) AS nb FROM points_prelev, prelevements, limites_classes WHERE prelevements.id_point=points_prelev.id AND points_prelev.id_class=limites_classes.id GROUP BY point, type, description, classe ORDER BY nb DESC;';
 
         $reponse=pg_query($a, $question);
@@ -58,7 +58,11 @@
         {
 	    echo "<tr>";
 	    $uneligne=pg_fetch_array($reponse,$j);
-	    echo "<td>".$uneligne['point']."</td><td>".$uneligne['type']."</td><td>".$uneligne['description']."</td><td>".$uneligne['classe']."</td><td>".$uneligne['nb']."</td>";
+	    echo "<td>".$uneligne['point']."</td>
+            <td>".$uneligne['type']."</td>
+            <td>".$uneligne['description']."</td>
+            <td>".$uneligne['classe']."</td>
+            <td>".$uneligne['nb']."</td>";
 	    echo "</tr>";
         }
 

@@ -5,49 +5,49 @@
 	<link rel="stylesheet" href="style.css" />
     </head>
     <body>
+
+        <!-- Sélection des filtres des prélèvments et résultats de la bdd bacterio_upnp par la méthode POST -->
 	
-	<form method="POST", action="prelevements_select.php">
-	    <fieldset>
-	        <legend>Sélectionnez les filtres des prélévements et des résultats</legend>
+	      <form method="POST", action="prelevements_select.php">
+	        <fieldset>
+	          <legend>Sélectionnez les filtres des prélévements et des résultats</legend>
 
-                <p>
-                    Date de début <input type=date name=date_debut value='2017-11-21'>
-                    Date de fin <input type=date name=date_fin required="required">
+            <p>
+              Date de début <input type=date name=date_debut value='2017-11-21'>
+              Date de fin <input type=date name=date_fin required="required">
 
-                <p>
-                    Classe<br>
-                    <input type=radio name=classe value=A>A
-                    <input type=radio name=classe value=D>D
-                    <input type=radio name=classe value=% checked=checked>Toutes
+            <p>
+              Classe<br>
+              <input type=radio name=classe value=A>A
+              <input type=radio name=classe value=D>D
+              <input type=radio name=classe value=% checked=checked>Toutes
 
-                <p>
-                    Type<br>
-                    <input type=radio name=type value=Gants>Gants
-                    <input type=radio name=type value=Air>Air
-                    <input type=radio name=type value=Surface>Surface
-                    <input type=radio name=type value=% checked=checked>Tous
+            <p>
+              Type<br>
+              <input type=radio name=type value=Gants>Gants
+              <input type=radio name=type value=Air>Air
+              <input type=radio name=type value=Surface>Surface
+              <input type=radio name=type value=% checked=checked>Tous
 
-                <p>
-                    Conformité<br>
-                    <input type=radio name=conf value=oui>conforme
-                    <input type=radio name=conf value=non>non conforme
-                    <input type=radio name=conf value=% checked=checked>Tous
+            <p>
+              Conformité<br>
+              <input type=radio name=conf value=oui>conforme
+              <input type=radio name=conf value=non>non conforme
+              <input type=radio name=conf value=% checked=checked>Tous
 
-                <p>
-                    Type de rendu<br>
-                    <input type=radio name=rendu value=téléphoné>téléphoné
-                    <input type=radio name=rendu value=signé>signé
-                    <input type=radio name=rendu value=% checked=checked>Tous
+            <p>
+              Type de rendu<br>
+              <input type=radio name=rendu value=téléphoné>téléphoné
+              <input type=radio name=rendu value=signé>signé
+              <input type=radio name=rendu value=% checked=checked>Tous
 
-                <P>
-                    <input type=submit value="Afficher les prélèvements sélectionné"><br>
-                    <input type=reset value="réinitialiser"><br>
-                    <input type=button onclick="alert('remplissez les champs')" value="Aide">
-
+            <P>
+              <input type=submit value="Afficher les prélèvements sélectionné"><br>
+              <input type=reset value="réinitialiser"><br>
+              <input type=button onclick="alert('remplissez les champs')" value="Aide">
+              
         </form>
         </fieldset>
-	
-	
 	
     </body>
 </html>
