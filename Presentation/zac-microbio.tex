@@ -21,8 +21,8 @@ Les mélanges de nutrition parentérale sont utilisés pour les patients dont le
 Pour la préparation des médicaments stériles les Bonnes pratiques de préparation \footnote{Bonnes Pratiques de Préparations, Afssaps, 2007} (BPP) imposent des  exigences  particulières en vue de réduire les risques de contamination microbienne, particulaire et pyrogène. Elles définissent notamment les zone d'atmosphère contrôlée (ZAC) qui sont des locaux et équipements dont les qualités microbiologique et particulaire sont contrôlées (figure \ref{zac}).
 
 \begin{figure}[h]
-\caption{\label{zac}Principe d'une zone d'atmosphère contrôlée pour la préparation de médicaments stériles}
-\includegraphics[scale=0.25]{zac.png}
+\caption{\label{zac}Schéma des principes d'une zone d'atmosphère contrôlée pour la préparation de médicaments stériles}
+\includegraphics[scale=0.4]{zac.png}
 \end{figure}
 
 Aux fins de préparation de médicaments stériles, 4 classes de ZAC sont distinguées. Des recommandations pour la surveillance microbiologique des ZAC sont présentées dans la table \ref{zac}. Les méthodes d'échantillonnages utilisent des boîtes de Petri, des échantillons volumétriques d'air et des contrôles de surface (prélevés au moyen de géloses de contact et/ou écouvillons).
@@ -43,12 +43,12 @@ Aux fins de préparation de médicaments stériles, 4 classes de ZAC sont distin
 \end{center}
 \end{table}
 
-La pharmacie de notre établissement prépare des mélanges de nutrition parentérale pour la néonatologie. L'unité de préparation des mélanges de nutrition parentérale de notre établissement est constituée d'un isolateur en classe A dans une zone de préparation en classe D. Afin de surveiller la conformité de notre unité aux exigences des BPP, des prélèvements microbiologiques sont effectués quotidiennement. Une quarantaine de points de prélèvements ont été définis :
+La pharmacie de notre établissement prépare des mélanges de nutrition parentérale pour la réanimation néonatale. L'unité de préparation des mélanges de nutrition parentérale de notre établissement est constituée d'un isolateur en classe A dans une zone de préparation en classe D. Afin de surveiller la conformité de notre unité aux exigences des BPP, des prélèvements microbiologiques sont effectués quotidiennement. Une quarantaine de points de prélèvements ont été définis :
 \begin{itemize}
  \item Selon le lieu : isolateur ou salle;
  \item Selon le type de prélèvement : air, surface, gant;
  \item Selon le dispositif utilisé : boîte de Petri, gélose contact, écouvillon;
- \item Selon le point précis de prélèvement : tel gant, tel champ stérile, tel point de la balance...
+ \item Selon le point précis de prélèvement : gants, champs stériles, balance, automate de fabrication, etc.
  \end{itemize}
 Moins d'une dizaine de points sont prélevés quotidiennement. Afin de prélever tous les points chaque semaine, un planning de prélèvement répartit les points à prélever sur l'ensemble de la semaine.
 
@@ -91,7 +91,7 @@ disp VARCHAR(50) NOT NULL\\
 
 \item[Table limites\_classes] (Table \ref{classes}) liste les classes microbiologiques, les types de prélèvements et les limites microbiologiques. Elle a été créée avec la requête :
 \begin{tabbing}
-CREATE TABLE limites\_classes(\
+CREATE TABLE limites\_classes(\\
 id SERIAL PRIMARY KEY,\\
 classe VARCHAR(10) NOT NULL\\
 type VARCHAR(50) NOT NULL\\
@@ -210,6 +210,7 @@ id\_point INTEGER NOT NULL REFERENCES points\_prelev(id)
 
 \begin{tabbing}
 CREATE TABLE resultats(\\
+id SERIAL PRIMARY KEY,\\
 id\_prelev INTEGER REFERENCES prelevements(id),\\
 \nopagebreak
 ufc INTEGER NOT NULL,\\
