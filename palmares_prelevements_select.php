@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 	  <head>
 		    <title>Palmarès des points de prélèvements</title>
 		    <meta http-equiv="content-type" content="text/html, charset=utf-8" />
@@ -6,7 +6,7 @@
 	  </head>
 
     <body>
-        <!-- Affichage du tableau du nombre de prélèvements par point filtrer par palamres_prelevements_select.html -->
+        <!-- Affichage du tableau du nombre de prélèvements par point filtré par palmares_prelevements_select.html -->
         <a href="accueil.html">Retour à l'accueil</a>
         <h2>Palmarès des points de prélèvements</h2>
 

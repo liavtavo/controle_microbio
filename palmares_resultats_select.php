@@ -6,7 +6,7 @@
 	  </head>
 
     <body>
-        <!-- Présentation d'un tableau du nombre de résultats par point filtrés par resultats_select.html -->
+        <!-- Présentation d'un tableau du nombre de résultats par point filtré par resultats_select.html -->
         <a href="accueil.html">Retour à l'accueil</a>
         <h2>Palmarès des résultats signés</h2>
 
