@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 	  <head>
 		    <title>Palmarès résultats</title>
 		    <meta http-equiv="content-type" content="text/html, charset=utf-8" />
@@ -6,6 +6,7 @@
 	  </head>
 
     <body>
+        <!-- Présentation d'un tableau du nombre de résultats par point filtrés par resultats_select.html -->
         <a href="accueil.html">Retour à l'accueil</a>
         <h2>Palmarès des résultats signés</h2>
 

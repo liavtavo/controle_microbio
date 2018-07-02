@@ -1,4 +1,4 @@
-<html>
+﻿<html>
     <head>
         <title>enregistrement des prélèvements</title>
         <meta http-equiv="content-type" content="text/html, charset=utf-8" />
@@ -6,7 +6,7 @@
     </head>
 
     <body>
-        <!-- Enregistrement des prélèvements sélectionnés dans prelevments_saisie.php dans la table prelevements -->
+        <!-- Enregistrement des prélèvements sélectionnés dans prelevements_saisie.php dans la table prelevements -->
         <h2>Confirmation des enregistrements</h2>
         <?php
         $a=pg_connect("dbname=bacterio_upnp user=pharmacien host=127.0.0.1 password=zac");

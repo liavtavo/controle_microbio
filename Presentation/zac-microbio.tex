@@ -6,7 +6,7 @@
 \usepackage{amsmath}
 \usepackage[colorlinks]{hyperref}
 \author{Thomas~Liautaud\\Pharmacien des hôpitaux\\Grand Hôpital de l'Est Francilien}
-\date{26 avril 2018}
+\date{2 juillet 2018}
 \title{Un serveur web couplé à un système de gestion de base de données pour l'enregistrement des données de la surveillance microbiologique d'une zone d'atmosphère contrôlée}
 
 \begin{document}
@@ -211,7 +211,8 @@ id\_point INTEGER NOT NULL REFERENCES points\_prelev(id)
 \begin{tabbing}
 CREATE TABLE resultats(\\
 id SERIAL PRIMARY KEY,\\
-id\_prelev INTEGER REFERENCES prelevements(id),\\
+id\_prelev INTEGER NOT NULL REFERENCES prelevements(id),\\
+date\_res DATE NOT NULL\\
 \nopagebreak
 ufc INTEGER NOT NULL,\\
 germe VARCHAR(100),\\
@@ -226,8 +227,11 @@ type\_rendu VARCHAR(10) NOT NULL
 	\textbf{Nom de variable} & \textbf{Type} & \textbf{Clé primaire} & \textbf{Clé étrangère}\\
 	\hline
 	id & SERIAL & oui & \\
-	date\_prelev & DATE & &\\
-	id\_point & INTEGER & & points\_prelev(id)\\
+	id\_prelev & INTEGER & & prelevements(id) \\
+	date\_res & DATE & & \\
+	ufc & INTEGER & & \\
+	germe & VARCHAR(100) & & \\
+	type\_rendu & VARCHAR(10) & & \\
 	\hline
 \end{tabular}
 \end{center}
@@ -236,7 +240,9 @@ type\_rendu VARCHAR(10) NOT NULL
 \end{description}
 
 \subsubsection{Peuplement des tables}
-Les enregistrements des tables ont été renseignés par des commandes SQL \emph{INSERT}, sauf pour les tables \emph{prelevements} et \emph{resultats}. Ces deux tables ont été renseignées par l'importation de fichiers .csv contenant les données déjà enregistrées sur tableur.
+Les enregistrements des tables ont été renseignés par des commandes SQL \emph{INSERT}, sauf pour les tables \emph{prelevements} et \emph{resultats}. Ces deux tables ont été renseignées par l'importation de fichiers .csv contenant les données déjà enregistrées sur tableur et par des enregistrements de prélèvements et résultats fictifs à partir des pages web.
+
+Les prélèvements et résultats présentés sont fictifs et ne représentent en aucun cas des résultats et prélèvements réels.
 \subsection{Serveur Web}
 Le serveur web Apache (version 2.4.7) et installé sur le système d'exploitation GNU/Linux (Linux Mint 17.3).
 Les pages Web sont écrites en langage HTML et PHP (version 7.2.4-1)
@@ -253,26 +259,43 @@ Le schéma relationnel de la base \emph{bacterio\_upnp} (figure \ref{erd}) a ét
 \subsection{Pages web}
 
 Les fichiers .php et .html du site web (figure \ref{arbo}) sont les suivants :
-\begin{description}
-\item[accueil.html :] Présentation de la base de données et accès aux différentes pages par des liens hypertexte.
-
 \begin{figure}[h]
 \caption{\label{arbo}Arborescence des pages web}
 \includegraphics[scale=0.45]{arborescence.png}
 \end{figure}
-
-
+\begin{description}
+\item[accueil.html :] Page centrale avec les liens vers les autres pages du site : accès aux différentes pages du site web par des liens hypertexte ; présentation du site web et de la base de données.
+\item[planning.php :] Extraction du planning de prélèvement depuis la base de données bacterio\_upnp. Présentation sous forme de tableau.
+\item[planning\_select.html :] Définition des filtres du planning de prélèvement avec la méthode POST.
+\item[planning\_select.php :] Planning des points de prélèvements sélectionnés avec planning\_select.html.
+\item[prelevements.php :] Tableau des prélèvements et des résultats extraits de la bdd bacterio\_upnp.
+\item[prelevement\_select.html :] Sélection des filtres des prélèvements et résultats de la bdd bacterio\_upnp par la méthode POST.
+\item[prelevements\_select.php :] Affichage des tables prelevements et resultats de la bdd bacterio\_upnp avec les filtres sélectionnés par la page prelevements\_select.html.
+\item[palmares\_prelevements.php :] Affichage du classement du nombre de prélèvements par point.
+\item[palmares\_prelevements\_select.html] : Filtres de sélection pour les prélèvements par la méthode POST.
+\item[palmares\_prelevements\_select.php :] Affichage du tableau du nombre de prélèvements par point filtrer par palmares\_prelevements\_select.html
+\item[palmares\_resultats.php :] Présentation d'un tableau du nombre de résultats par point.
+\item[resultats\_select.html :] Filtres pour le palmares des résultats par la méthode POST.
+\item[palmares\_resultats\_select.php :] Présentation d'un tableau du nombre de résultats par point filtrés par resultats\_select.html.
+\item[palmares\_germes.php :] Classement par ordre décroissants du nombre de résults par germe.
+\item[germes\_select.html :] Sélection des filtres pour le palmares des germes par la méthode POST.
+\item[palmares\_germes\_select.php :] Utilisation des filtres de germes\_select.html pour afficher le palmares du nombre de résulats par germe.
+\item[prelevements\_saisie.html] Filtres pour la saisie des prélèvements par la méthode POST.
+\item[prelevements\_saisie.php :] Affichage des points à prélever selon les filtres sélectionnés dans prelevements\_saisie.html.
+\item[prelevements\_saisie\_confirm.php :] Enregistrement des prélèvements sélectionnés dans prelevements\_saisie.php dans la table prelevements.
+\item[resultats\_saisie.php :] Saisie des résultats sélectionnés avec resultats\_saisie.html.
+\item[resultats\_saisie\_confirm.php :] Enregistrements des résultats saisis dans la page resultats\_saisie.php.
+\item[zac-microbio.pdf :] Présentation du projet et description de la base de données et du site web (ce document).
+\item[tables\_brutes.php :] Présentation sous forme de tableaux des tables de la base de données bacterio\_upnp.
 
 
 \end{description}
 
-\section{Discussion}
-Discussion
-\section{Conclusion}
-conclusion
+\section{Discussion et conclusion}
+Ce site web couplé à une base de données permet de consulter les données enregistrées. Il permet également d'enregistrer de nouveaux prélèvements et leurs résultats microbiologiques.
 
+Il manque la possibilité de modifier les prélèvements et les résultats enregistrés en cas d'erreur de saisie. Il serait également interessant de filtrer les prélèvements qui n'ont pas encore de résultats microbiologiques.
 
-
-
+Ce site web couplé à une base de données pourra être testé en conditions réelles lorsque un serveur web sera mis à disposition de la pharmacie de l'hôpital. Le retour des utilisateurs le fera encore évolué.
 
 \end{document}

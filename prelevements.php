@@ -1,10 +1,10 @@
-<html>
+﻿<html>
     <head>
         <title>Prélèvements</title>
         <meta http-equiv="content-type" content="text/html, charset=utf-8" />
         <link rel="stylesheet" href="style.css" />
     </head>
-   <!-- Tableau des prélèvements et des résultats extraits de la bdd bacterion_upnp --> 
+   <!-- Tableau des prélèvements et des résultats extraits de la bdd bacterio_upnp --> 
     <body>
         <a href="accueil.html">Retour à l'accueil</a>
         <h2>Prélèvements réalisés et résultats</h2>

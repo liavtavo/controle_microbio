@@ -1,4 +1,4 @@
-<html>
+﻿<html>
     <head>
         <title>tables_brutes</title>
         <meta http-equiv="content-type" content="text/html, charset=utf-8" />
@@ -6,6 +6,7 @@
     </head>
 
     <body>
+        <!-- Présentation sous forme de tableaux des tables de la base de données bacterio_upnp. -->
         <a href="accueil.html">Retour à l'accueil</a>
         <h2>Schéma relationnel des tables de la base de données</h2>
 
