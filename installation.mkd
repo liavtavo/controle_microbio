@@ -1,13 +1,26 @@
 #Installation
 
-## BBD postgreSQl
+## Serveur LAPP
 
+###Installation
+
+* Apache2 version 2.4.7
+* apache2-utils
+* libapache2-mod-php7.2
+* PHP version 7.2.4-1
+* php-pgsql
 * postgreSQL version 9.3
+* postgresql-client 9.3
+
+###Paramétrage
+
+
+
+
+## paramétrage postgreSQl
+
+
 * base de données nommée *bacterio_upnp*
 * utilisateur *pharmacien* mot de passe *zac*
 * Création des tables
 
-## Serveur Web
-
-* Apache version 2.4.7
-* PHP version 7.2.4-1
